@@ -2,19 +2,15 @@
 theme: ../themes/noonlabs
 title: Votre premier script Python utile
 info: NoonLabs - Module I, vidéo 01
-class: text-left
+layout: cover
 transition: fade
 mdc: true
 ---
 
-<!--
-SLIDE 1 - Title card
-Appears at 0:25. On screen ~5 seconds, while you say
-"Bienvenue sur NoonLabs". Nobody reads this - it is a brand stamp.
--->
 # NoonLabs
 
-Le code et l'IA comme on les écrit en production
+Code and AI as written in production
+
 
 ---
 layout: default
@@ -34,11 +30,11 @@ Build: table -> equals -> raw text.
 
 <div>
 
-| date | montant | categorie |
-|------|---------|-----------|
-| 01-01 | 13.16 | Restaurant |
-| 01-01 | 5.50 | Courses |
-| 01-01 | 23.62 | Abonnements |
+| date  | montant | categorie  |
+|-------|---------|------------|
+| 01-01 | 13.16   | Restaurant |
+| 01-01 | 5.50    | Courses    |
+| 01-01 | 23.62   | Abonnements|
 
 <div class="nl-type mt-4">What you see</div>
 
@@ -181,3 +177,28 @@ This is the most screenshot-able moment in the video.
 <div v-click class="nl-statement mt-12">
 Everything else in Python builds on this
 </div>
+
+
+---
+layout: end
+---
+
+# Thanks for watching
+
+The full code is in the description
+
+<div class="nl-next">
+
+Next video · Tuesday
+<strong>VIDEO 2 TITLE</strong>
+
+</div>
+
+<!--
+SLIDE 6 - Closing card
+Appears at ~17:30. On screen ~12 seconds.
+Say the next video's topic out loud while this is up - the line on screen
+is the reminder, your voice is the reason they come back.
+Then: "À mardi." Hold two beats of silence before you stop recording,
+so the editor has room to fade.
+-->

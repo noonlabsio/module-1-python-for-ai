@@ -35,7 +35,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.22em;
+  gap: 0.16em;
 }
 
 .slidev-layout.cover h1::before {
@@ -56,4 +56,4 @@
 
 /* Tighter lockup. Overrides the gap in layout.css rather than editing it,
    because .nl-verify shares that value and must not follow along. */
-.nl-brand { gap: 0.3rem; }
+.nl-brand { gap: 0.22rem; }

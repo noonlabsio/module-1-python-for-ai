@@ -1,0 +1,66 @@
+/* ==========================================================================
+   Module-deck styles.
+
+   Slidev auto-loads style.css from the slides directory, after the theme, so
+   every rule here wins without editing themes/noonlabs/.
+
+   Deliberately NOT in the theme: the label treatment below is a deck-level
+   decision, and 01-premier-script is being recorded tomorrow. Keeping it
+   here means that deck cannot change under you.
+
+   Two jobs:
+   1. LABELS — .nl-type becomes sentence case in the accent colour.
+   2. SCALE  — a framed slide has ~430px of usable height on the 980x552
+               canvas, and Slidev clips rather than shrinking. The theme
+               scale overflowed on any slide carrying four cards or two
+               stacked code blocks.
+   ========================================================================== */
+
+/* ---- labels --------------------------------------------------------------- */
+.nl-type {
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+.nl-type strong { color: var(--nl-bone); font-weight: 500; }
+
+/* ---- type scale ----------------------------------------------------------- */
+.slidev-layout { font-size: 1.3rem; line-height: 1.45; }
+
+.slidev-layout h1 { font-size: 2.4rem; margin-bottom: 0; }
+.nl-frame h1::before { margin-bottom: 0.6rem; }
+.slidev-layout h2 { font-size: 1.5rem; margin-top: 0.2rem; }
+.slidev-layout p  { margin: 0.35em 0; }
+
+.slidev-layout ul { margin: 0.3em 0; padding-left: 1.1rem; }
+.slidev-layout li { margin: 0.22em 0; }
+.slidev-layout li::marker { color: var(--fg-3); }
+
+.slidev-layout .slidev-code,
+.slidev-layout pre.shiki {
+  padding: 0.8rem 0.9rem !important;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.nl-card { padding: 0.9rem 1rem; }
+.nl-card p { margin: 0.25em 0; }
+
+.nl-cols { gap: 1.8rem; }
+.nl-statement { font-size: 1.6rem; }
+.nl-recap { font-size: 1.2rem; row-gap: 0.4rem; }
+
+/* ---- footer colophon ------------------------------------------------------
+   Pinned to the foot of the title card only. An address block in the corner
+   of a teaching slide is noise the viewer looks past for eighteen minutes. */
+.nl-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-family: var(--nl-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}
