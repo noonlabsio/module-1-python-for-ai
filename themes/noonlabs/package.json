@@ -1,0 +1,19 @@
+{
+  "name": "slidev-theme-noonlabs",
+  "version": "0.2.0",
+  "description": "NoonLabs — ink surface for teaching slides, paper for notation.",
+  "private": true,
+  "keywords": ["slidev-theme", "slidev", "noonlabs"],
+  "engines": {
+    "node": ">=22",
+    "slidev": ">=0.48.0"
+  },
+  "slidev": {
+    "colorSchema": "dark",
+    "highlighter": "shiki",
+    "defaults": {
+      "layout": "default",
+      "transition": "fade"
+    }
+  }
+}

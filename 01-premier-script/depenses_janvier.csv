@@ -1,0 +1,248 @@
+date,description,montant,categorie
+2026-01-01,La Fontaine,13.16,Restaurant
+2026-01-01,Carrefour Market,5.50,Courses
+2026-01-01,Amazon Prime,23.62,Abonnements
+2026-01-01,Brasserie du Nord,23.58,Restaurant
+2026-01-01,BlaBlaCar,11.26,Transport
+2026-01-01,Pharmacie du Centre,21.39,Sante
+2026-01-01,O Tacos,12.47,Restaurant
+2026-01-02,Franprix,9.74,Courses
+2026-01-02,La Fontaine,18.82,Restaurant
+2026-01-02,Boulangerie Saint-Michel,10.01,Courses
+2026-01-02,Marche Bastille,14.62,Courses
+2026-01-02,Marche Bastille,9.35,Courses
+2026-01-03,Leclerc Drive,16.76,Courses
+2026-01-03,Engie Gaz,46.79,Logement
+2026-01-03,Naturalia,4.07,Courses
+2026-01-03,Amazon Prime,13.95,Abonnements
+2026-01-03,Pharmacie du Centre,27.45,Sante
+2026-01-03,RATP Navigo,11.53,Transport
+2026-01-03,Cafe de la Gare,21.20,Restaurant
+2026-01-03,Loyer Janvier,1250.00,Logement
+2026-01-03,Charges Copropriete,38.37,Logement
+2026-01-04,Paul,13.14,Restaurant
+2026-01-04,Boucherie Fontaine,22.85,Courses
+2026-01-04,Le Bouillon,21.18,Restaurant
+2026-01-04,Naturalia,10.10,Courses
+2026-01-04,Trainline,19.17,Transport
+2026-01-04,Le Petit Bistrot,12.59,Restaurant
+2026-01-04,Naturalia,14.24,Courses
+2026-01-04,BlaBlaCar,2.36,Transport
+2026-01-04,Carrefour Market,22.59,Courses
+2026-01-05,Sushi Yaki,24.86,Restaurant
+2026-01-05,Le Bouillon,23.11,Restaurant
+2026-01-05,Pizzeria Napoli,14.11,Restaurant
+2026-01-05,Intermarche,11.13,Courses
+2026-01-05,Lidl,11.67,Courses
+2026-01-06,Librairie Mollat,5.86,Loisirs
+2026-01-06,Picard,14.08,Courses
+2026-01-06,Chez Mamou,13.73,Restaurant
+2026-01-06,Station Esso,9.13,Transport
+2026-01-06,Laboratoire Cerba,40.25,Sante
+2026-01-06,SNCF Connect,22.67,Transport
+2026-01-06,Spotify,22.69,Abonnements
+2026-01-06,Le Bouillon,19.14,Restaurant
+2026-01-07,Decathlon,26.16,Loisirs
+2026-01-07,Lidl,3.73,Courses
+2026-01-07,Theatre du Rond-Point,9.47,Loisirs
+2026-01-08,FNAC,23.87,Loisirs
+2026-01-08,Nicolas,15.30,Courses
+2026-01-08,Amazon Prime,9.84,Abonnements
+2026-01-08,Engie Gaz,40.86,Logement
+2026-01-08,Station Esso,10.76,Transport
+2026-01-08,Lidl,3.47,Courses
+2026-01-08,Nicolas,20.06,Courses
+2026-01-08,Amazon Prime,9.12,Abonnements
+2026-01-08,Librairie Mollat,11.79,Loisirs
+2026-01-08,Free Now,10.09,Transport
+2026-01-08,Grand Frais,15.64,Courses
+2026-01-08,Nicolas,7.83,Courses
+2026-01-08,Velib Metropole,6.82,Transport
+2026-01-08,La Fontaine,15.78,Restaurant
+2026-01-09,Picard,22.53,Courses
+2026-01-09,Nicolas,18.70,Courses
+2026-01-09,Chez Mamou,25.03,Restaurant
+2026-01-09,RATP Navigo,20.63,Transport
+2026-01-09,Sushi Yaki,6.55,Restaurant
+2026-01-09,Theatre du Rond-Point,36.00,Loisirs
+2026-01-10,Columbus Cafe,10.15,Restaurant
+2026-01-10,Kinesitherapeute Dubois,9.75,Sante
+2026-01-10,La Fontaine,9.69,Restaurant
+2026-01-10,Librairie Mollat,15.62,Loisirs
+2026-01-10,BlaBlaCar,20.34,Transport
+2026-01-11,Nicolas,16.81,Courses
+2026-01-11,La Fontaine,12.30,Restaurant
+2026-01-11,Station Esso,15.45,Transport
+2026-01-11,Kinesitherapeute Dubois,17.65,Sante
+2026-01-11,Grand Frais,18.31,Courses
+2026-01-11,Auchan,23.99,Courses
+2026-01-11,RATP Navigo,14.39,Transport
+2026-01-11,Le Comptoir,22.65,Restaurant
+2026-01-11,Lidl,15.56,Courses
+2026-01-12,Theatre du Rond-Point,11.04,Loisirs
+2026-01-12,Deezer,5.74,Abonnements
+2026-01-12,Assurance Habitation,22.88,Logement
+2026-01-12,Uber,1.94,Transport
+2026-01-12,Carrefour Market,10.57,Courses
+2026-01-12,Boucherie Fontaine,3.94,Courses
+2026-01-12,Uber,7.03,Transport
+2026-01-12,Le Monde Numerique,22.53,Abonnements
+2026-01-12,RATP Navigo,4.79,Transport
+2026-01-12,Uber,22.12,Transport
+2026-01-12,EDF Electricite,16.26,Logement
+2026-01-12,Free Internet,18.42,Abonnements
+2026-01-12,Le Petit Bistrot,25.87,Restaurant
+2026-01-12,Intermarche,23.73,Courses
+2026-01-12,Station Esso,23.97,Transport
+2026-01-12,Boulangerie Saint-Michel,11.34,Courses
+2026-01-13,EDF Electricite,25.17,Logement
+2026-01-13,RATP Navigo,17.09,Transport
+2026-01-13,Picard,3.46,Courses
+2026-01-13,Brasserie du Nord,13.08,Restaurant
+2026-01-13,Franprix,16.30,Courses
+2026-01-13,Deezer,8.80,Abonnements
+2026-01-13,La Fontaine,25.88,Restaurant
+2026-01-13,Naturalia,15.69,Courses
+2026-01-13,Lidl,23.15,Courses
+2026-01-14,Piscine Municipale,26.70,Loisirs
+2026-01-14,Boucherie Fontaine,15.83,Courses
+2026-01-14,Biocoop,5.87,Courses
+2026-01-14,Bagel Corner,11.26,Restaurant
+2026-01-14,Station Esso,18.91,Transport
+2026-01-14,Boulangerie Saint-Michel,17.25,Courses
+2026-01-14,Station Esso,4.01,Transport
+2026-01-14,Brasserie du Nord,13.54,Restaurant
+2026-01-15,Dr Lemoine,45.60,Sante
+2026-01-15,BlaBlaCar,6.84,Transport
+2026-01-15,Decathlon,8.91,Loisirs
+2026-01-15,Nicolas,11.07,Courses
+2026-01-15,Musee d'Orsay,8.09,Loisirs
+2026-01-15,Bagel Corner,11.15,Restaurant
+2026-01-15,Le Petit Bistrot,12.40,Restaurant
+2026-01-15,Bricorama,47.41,Logement
+2026-01-15,Grand Frais,8.61,Courses
+2026-01-15,Pharmacie Lafayette,44.40,Sante
+2026-01-15,Le Bouillon,14.85,Restaurant
+2026-01-15,RATP Navigo,20.67,Transport
+2026-01-15,Station Esso,6.33,Transport
+2026-01-16,Decathlon,14.07,Loisirs
+2026-01-16,Amazon Prime,13.16,Abonnements
+2026-01-16,Chez Mamou,19.05,Restaurant
+2026-01-16,Cafe de la Gare,18.00,Restaurant
+2026-01-16,Columbus Cafe,20.38,Restaurant
+2026-01-16,Boucherie Fontaine,10.79,Courses
+2026-01-16,Cultura,5.85,Loisirs
+2026-01-17,Trainline,22.18,Transport
+2026-01-17,Marche Bastille,5.88,Courses
+2026-01-17,Carrefour Market,9.86,Courses
+2026-01-17,Le Comptoir,11.62,Restaurant
+2026-01-17,Velib Metropole,19.53,Transport
+2026-01-17,Pharmacie du Centre,31.69,Sante
+2026-01-17,Le Bouillon,7.09,Restaurant
+2026-01-17,Monoprix,4.44,Courses
+2026-01-17,SNCF Connect,5.69,Transport
+2026-01-18,Decathlon,14.76,Loisirs
+2026-01-18,Auchan,13.23,Courses
+2026-01-18,Veolia Eau,21.93,Logement
+2026-01-18,Paul,3.97,Restaurant
+2026-01-18,Intermarche,12.76,Courses
+2026-01-18,Cinema Pathe,18.03,Loisirs
+2026-01-18,Lidl,9.22,Courses
+2026-01-19,Kinesitherapeute Dubois,47.87,Sante
+2026-01-19,Columbus Cafe,7.47,Restaurant
+2026-01-19,Musee d'Orsay,34.83,Loisirs
+2026-01-19,Trainline,12.29,Transport
+2026-01-19,Le Comptoir,25.91,Restaurant
+2026-01-19,Starbucks Republique,8.35,Restaurant
+2026-01-19,Lidl,20.14,Courses
+2026-01-20,EDF Electricite,40.08,Logement
+2026-01-20,Station Esso,22.33,Transport
+2026-01-20,Total Energies,22.73,Transport
+2026-01-20,Cinema Pathe,22.92,Loisirs
+2026-01-20,Franprix,17.77,Courses
+2026-01-20,Auchan,13.32,Courses
+2026-01-20,Monoprix,9.50,Courses
+2026-01-20,RATP Navigo,10.52,Transport
+2026-01-20,Monoprix,4.82,Courses
+2026-01-21,Lidl,5.31,Courses
+2026-01-21,Charges Copropriete,23.75,Logement
+2026-01-21,Assurance Habitation,45.06,Logement
+2026-01-21,Le Petit Bistrot,5.08,Restaurant
+2026-01-21,Picard,12.39,Courses
+2026-01-21,Librairie Mollat,16.24,Loisirs
+2026-01-21,Columbus Cafe,8.91,Restaurant
+2026-01-21,Carrefour Market,16.04,Courses
+2026-01-22,Deezer,5.00,Abonnements
+2026-01-22,Laboratoire Cerba,18.56,Sante
+2026-01-22,Ticketmaster,18.81,Loisirs
+2026-01-22,Laboratoire Cerba,28.51,Sante
+2026-01-22,La Fontaine,25.53,Restaurant
+2026-01-23,iCloud,5.91,Abonnements
+2026-01-23,Cafe de la Gare,17.32,Restaurant
+2026-01-23,Pharmacie du Centre,8.80,Sante
+2026-01-23,Franprix,17.08,Courses
+2026-01-23,Marche Bastille,20.47,Courses
+2026-01-23,Parking Vinci,20.28,Transport
+2026-01-23,Le Comptoir,23.26,Restaurant
+2026-01-23,Bagel Corner,22.49,Restaurant
+2026-01-24,Station Esso,22.41,Transport
+2026-01-24,Trainline,13.89,Transport
+2026-01-24,Musee d'Orsay,26.41,Loisirs
+2026-01-24,Lidl,15.93,Courses
+2026-01-24,Dr Lemoine,13.70,Sante
+2026-01-24,Parking Vinci,21.17,Transport
+2026-01-24,FNAC,33.30,Loisirs
+2026-01-24,Cantine Merci,11.84,Restaurant
+2026-01-24,Lidl,7.44,Courses
+2026-01-25,Intermarche,18.42,Courses
+2026-01-25,Starbucks Republique,25.88,Restaurant
+2026-01-25,Bagel Corner,9.36,Restaurant
+2026-01-25,Pharmacie Lafayette,24.46,Sante
+2026-01-25,Starbucks Republique,11.26,Restaurant
+2026-01-26,Kinesitherapeute Dubois,35.87,Sante
+2026-01-26,Cultura,6.15,Loisirs
+2026-01-26,Sushi Yaki,14.06,Restaurant
+2026-01-26,Musee d'Orsay,28.59,Loisirs
+2026-01-26,Trainline,17.96,Transport
+2026-01-26,Intermarche,7.89,Courses
+2026-01-26,Pizzeria Napoli,5.82,Restaurant
+2026-01-27,O Tacos,10.39,Restaurant
+2026-01-27,Parking Vinci,16.26,Transport
+2026-01-27,Auchan,21.40,Courses
+2026-01-27,Orange Mobile,14.30,Abonnements
+2026-01-27,Assurance Habitation,22.78,Logement
+2026-01-27,Franprix,11.14,Courses
+2026-01-27,Pharmacie Lafayette,19.26,Sante
+2026-01-27,Columbus Cafe,23.84,Restaurant
+2026-01-27,Starbucks Republique,12.55,Restaurant
+2026-01-27,Piscine Municipale,8.80,Loisirs
+2026-01-28,Amazon Prime,17.70,Abonnements
+2026-01-28,Total Energies,8.83,Transport
+2026-01-28,Le Bouillon,4.08,Restaurant
+2026-01-28,Free Internet,10.36,Abonnements
+2026-01-28,BlaBlaCar,23.01,Transport
+2026-01-28,Intermarche,7.90,Courses
+2026-01-29,Auchan,16.58,Courses
+2026-01-29,Bagel Corner,4.96,Restaurant
+2026-01-29,Le Petit Bistrot,12.40,Restaurant
+2026-01-29,Assurance Habitation,28.69,Logement
+2026-01-29,Le Petit Bistrot,23.75,Restaurant
+2026-01-29,Leclerc Drive,16.03,Courses
+2026-01-29,O Tacos,14.94,Restaurant
+2026-01-29,Dr Lemoine,32.62,Sante
+2026-01-29,Leclerc Drive,21.25,Courses
+2026-01-29,Leclerc Drive,19.01,Courses
+2026-01-30,Biocoop,23.71,Courses
+2026-01-30,Auchan,11.40,Courses
+2026-01-30,Le Bouillon,9.58,Restaurant
+2026-01-30,Cityscoot,17.19,Transport
+2026-01-30,Trainline,19.85,Transport
+2026-01-30,Leclerc Drive,4.30,Courses
+2026-01-30,Uber,7.79,Transport
+2026-01-30,Velib Metropole,20.70,Transport
+2026-01-30,BlaBlaCar,23.36,Transport
+2026-01-30,Theatre du Rond-Point,10.75,Loisirs
+2026-01-30,SNCF Connect,3.20,Transport
+2026-01-30,FNAC,31.16,Loisirs
+2026-01-31,Boucherie Fontaine,12.66,Courses
+2026-01-31,Boulangerie Saint-Michel,11.80,Courses

@@ -1,0 +1,490 @@
+/* ==========================================================================
+   NoonLabs — Slidev theme, ported from the website's two-surface system.
+   ink   (dark)  : every teaching slide. This is the DEFAULT.
+   paper (light) : dense notation only, opt in with `layout: paper` (Module II).
+
+   Fonts are @imported here on purpose. Slidev's webfont preset fails
+   silently when a family name does not resolve, and a silent fallback to
+   system-ui is invisible on a laptop and glaring at 1080p.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ---- brand name: injected, never typed into a layout ------------------ */
+  --nl-brand-a: "Noon";
+  --nl-brand-b: "Labs";
+
+  /* ---- ink ladder ------------------------------------------------------- */
+  --nl-ink-950: #04121F;
+  --nl-ink-900: #061A2E;
+  --nl-ink-800: #0B2742;
+  --nl-ink-700: #16395F;
+  --nl-line:    #1B4A77;
+
+  /* ---- paper: cool, not cream ------------------------------------------- */
+  --nl-paper-100: #EEF2F6;
+  --nl-paper-000: #FFFFFF;
+
+  /* ---- accent, rationed ------------------------------------------------- */
+  --nl-bronze:     #C58B5A;
+  --nl-bronze-hi:  #D59A69;
+  --nl-bronze-ink: #8E5A2E;   /* 5.11:1 on paper */
+  --nl-bone:       #F1E3D6;
+  --nl-verify:     #7FA694;
+
+  /* ---- type ------------------------------------------------------------- */
+  --nl-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --nl-math: 'IBM Plex Serif', Georgia, serif;
+  --nl-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* ---- code well tones (a code block is a figure: same on both surfaces) */
+  --nl-c-plain:  #C6D6E6;
+  --nl-c-com:    #6A85A2;
+  --nl-c-kw:     #C58B5A;
+  --nl-c-fn:     #E8D3BE;
+  --nl-c-str:    #8FB3A5;
+  --nl-c-cool:   #9FB4CC;
+  --nl-c-gutter: #42648A;
+
+  --nl-r: 12px;
+  --nl-r-sm: 8px;
+
+  /* Slidev hooks */
+  --slidev-theme-primary: var(--nl-bronze);
+  --slidev-code-font-family: var(--nl-mono);
+  --slidev-code-radius: var(--nl-r);
+}
+
+html, body, #slide-container { background: var(--nl-ink-950); }
+
+/* ==========================================================================
+   Base surface — ink-900. Every layout inherits this and overrides --bg.
+   ========================================================================== */
+
+.slidev-layout {
+  --bg: var(--nl-ink-900);
+  --fg:   #F4F7FA;
+  --fg-2: #A8BACF;
+  --fg-3: #8195AD;
+  --hair:   rgba(27, 74, 119, 0.62);
+  --hair-2: rgba(27, 74, 119, 0.95);
+  --accent: var(--nl-bronze);
+  --grid-a: rgba(168, 186, 207, 0.5);
+  --grid-b: rgba(168, 186, 207, 0.85);
+  --grid-opacity: 0.05;
+
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2.6rem 3rem;
+  background: var(--bg);
+  color: var(--fg-2);
+  font-family: var(--nl-sans);
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The mathematical ground: a 28px working grid with a 140px major grid over
+   it, exactly as on the website. Two scales, so the surface reads as ruled
+   paper rather than as graph-paper texture. */
+.slidev-layout::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: 0;
+  pointer-events: none;
+  opacity: var(--grid-opacity);
+  background-image:
+    linear-gradient(to right,  var(--grid-a) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-a) 1px, transparent 1px),
+    linear-gradient(to right,  var(--grid-b) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-b) 1px, transparent 1px);
+  background-size: 28px 28px, 28px 28px, 140px 140px, 140px 140px;
+}
+
+/* Vignette kept deliberately shallow. Wide smooth gradients band badly under
+   YouTube's compression; these two are small and low-contrast enough to survive. */
+.slidev-layout::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(760px 420px at 50% -12%, rgba(22, 57, 95, 0.42), transparent 70%),
+    radial-gradient(760px 560px at 2% 108%, rgba(11, 39, 66, 0.40), transparent 70%);
+}
+
+/* Content sits above the ground. */
+.nl-body {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   Type. Sized for a phone: half the audience watches this at 5 inches.
+   ========================================================================== */
+
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3 {
+  font-family: var(--nl-sans);
+  color: var(--fg);
+  font-weight: 500;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.slidev-layout h1 {
+  font-size: 3rem;
+  line-height: 1.06;
+  letter-spacing: -0.028em;
+  font-weight: 600;
+  margin-bottom: 0.1em;
+}
+
+/* The eyebrow rule, promoted from the website's .eyebrow::before. It marks
+   where the slide begins without spending a word on it. */
+.nl-frame h1::before {
+  content: "";
+  display: block;
+  width: 46px;
+  height: 2px;
+  background: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.slidev-layout h2 {
+  font-size: 1.9rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--fg-2);
+}
+
+.slidev-layout h3 {
+  font-family: var(--nl-mono);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+.slidev-layout p { margin: 0.5em 0; }
+.slidev-layout strong { color: var(--fg); font-weight: 500; }
+.slidev-layout em { font-style: normal; color: var(--nl-bone); }
+.slidev-layout a { color: var(--accent); text-decoration-color: var(--hair-2); }
+.slidev-layout ::selection { background: rgba(197, 139, 90, 0.28); color: var(--nl-bone); }
+
+/* ==========================================================================
+   Code. Inline code and the code well are the two places the accent is
+   allowed to appear without counting against the slide's one statement.
+   ========================================================================== */
+
+.slidev-layout :not(pre) > code {
+  font-family: var(--nl-mono);
+  font-size: 0.9em;
+  color: var(--accent);
+  background: rgba(197, 139, 90, 0.10);
+  border: 1px solid rgba(197, 139, 90, 0.22);
+  border-radius: var(--nl-r-sm);
+  padding: 0.06em 0.32em;
+}
+
+/* In a heading the chip reads as clutter: keep the colour, drop the frame. */
+.slidev-layout h1 code,
+.slidev-layout h2 code {
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+/* Shiki writes its background as an inline style, hence the override. */
+.slidev-layout .slidev-code,
+.slidev-layout pre.shiki {
+  background: var(--nl-ink-950) !important;
+  border: 1px solid var(--hair);
+  border-radius: var(--nl-r);
+  padding: 1rem 1.1rem !important;
+  font-family: var(--nl-mono);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+/* ==========================================================================
+   Tables — a register, not a card. Mono, because the content is data.
+   ========================================================================== */
+
+.slidev-layout table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--nl-mono);
+  font-size: 1.05rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.slidev-layout th {
+  text-align: left;
+  padding: 0.4rem 0.7rem 0.5rem 0;
+  border-bottom: 1px solid var(--hair-2);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+.slidev-layout td {
+  padding: 0.38rem 0.7rem 0.38rem 0;
+  border-bottom: 1px solid var(--hair);
+  color: var(--nl-c-plain);
+}
+
+/* ==========================================================================
+   Components. Prefix nl- throughout so nothing collides with UnoCSS.
+   ========================================================================== */
+
+/* --- the brand mark, top-left on every teaching slide -------------------- */
+.nl-brand {
+  position: absolute;
+  top: 1.5rem;
+  left: 3rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--nl-sans);
+  font-size: 1rem;
+  letter-spacing: -0.014em;
+  color: var(--fg);
+}
+
+.nl-brand .nl-brand-name { display: inline-flex; }
+.nl-brand .a { font-style: normal; font-weight: 600; color: var(--fg); }
+.nl-brand .b { font-style: normal; font-weight: 300; color: var(--fg-2); }
+.nl-brand .a::before { content: var(--nl-brand-a); }
+.nl-brand .b::before { content: var(--nl-brand-b); }
+
+/* The mark reserves its own band so a heading never collides with it. */
+.nl-frame .nl-body { padding-top: 2.2rem; }
+
+/* --- eyebrow and small label -------------------------------------------- */
+.nl-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--nl-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+.nl-eyebrow::before { content: ""; width: 20px; height: 1px; background: currentColor; opacity: 0.7; flex: none; }
+
+.nl-label {
+  font-family: var(--nl-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+/* --- two columns --------------------------------------------------------- */
+.nl-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.2rem;
+  align-items: start;
+}
+
+/* --- the statement: the one thing per slide that earns the accent -------- */
+.nl-statement {
+  font-size: 1.85rem;
+  line-height: 1.3;
+  font-weight: 500;
+  color: var(--nl-bone);
+  border-left: 3px solid var(--accent);
+  padding-left: 1.1rem;
+}
+.nl-statement p { display: inline; margin: 0; }
+.nl-statement code {
+  color: var(--nl-bone);
+  background: rgba(4, 18, 31, 0.6);
+  border-color: var(--hair-2);
+}
+
+/* --- caption / type label ------------------------------------------------ */
+.nl-type {
+  font-family: var(--nl-mono);
+  font-size: 0.92rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+.nl-type strong { color: var(--nl-bone); font-weight: 500; }
+
+/* --- character boxes: one glyph per cell, which is the whole point ------- */
+.nl-chars { display: flex; gap: 0.45rem; justify-content: center; }
+
+.nl-char {
+  width: 3rem;
+  height: 3.6rem;
+  display: grid;
+  place-items: center;
+  font-family: var(--nl-mono);
+  font-size: 1.7rem;
+  color: var(--nl-c-plain);
+  background: var(--nl-ink-950);
+  border: 1px solid var(--hair-2);
+  border-radius: var(--nl-r-sm);
+}
+
+/* --- and the single box it becomes --------------------------------------- */
+.nl-box {
+  display: inline-grid;
+  place-items: center;
+  min-width: 16.8rem;   /* 5 × 3rem + 4 × 0.45rem: the two sides line up exactly */
+  height: 3.6rem;
+  font-family: var(--nl-mono);
+  font-size: 1.7rem;
+  color: var(--nl-bone);
+  background: var(--nl-ink-950);
+  border: 1px solid var(--hair-2);
+  border-radius: var(--nl-r-sm);
+}
+
+/* --- key → value --------------------------------------------------------- */
+.nl-kv {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  column-gap: 1.4rem;
+  row-gap: 0.75rem;
+  align-items: baseline;
+  font-family: var(--nl-mono);
+  font-size: 1.75rem;
+}
+.nl-kv .k { color: var(--nl-c-str); }          /* it is a string literal */
+.nl-kv .arrow { color: var(--fg-3); }
+.nl-kv .v { color: var(--fg); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* --- numbered recap ------------------------------------------------------ */
+.nl-recap {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 1.3rem;
+  row-gap: 0.5rem;
+  align-items: baseline;
+  font-size: 1.35rem;
+}
+.nl-recap .n {
+  font-family: var(--nl-mono);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  color: var(--fg-3);
+}
+.nl-recap .what { color: var(--nl-bone); font-weight: 500; }
+.nl-recap .why  { color: var(--fg-2); }
+
+/* --- card, math, verify -------------------------------------------------- */
+.nl-card {
+  background: linear-gradient(180deg, rgba(22, 57, 95, 0.62), rgba(11, 39, 66, 0.44));
+  border: 1px solid var(--hair);
+  border-radius: var(--nl-r);
+  padding: 1.2rem 1.3rem;
+}
+
+.nl-math {
+  font-family: var(--nl-math);
+  font-size: 1.9rem;
+  line-height: 1.7;
+  color: var(--fg);
+}
+.nl-math .op { color: var(--accent); }
+
+.nl-verify {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--nl-mono);
+  font-size: 0.92rem;
+  letter-spacing: 0.09em;
+  color: var(--nl-verify);
+}
+
+/* ==========================================================================
+   Layout variants
+   ========================================================================== */
+
+.slidev-layout.cover {
+  --bg: var(--nl-ink-950);
+  --grid-opacity: 0.035;
+}
+.slidev-layout.cover .nl-body { align-items: center; justify-content: center; text-align: center; }
+.slidev-layout.cover h1 {
+  font-size: 4rem;
+  font-weight: 600;
+  letter-spacing: -0.032em;
+  margin-bottom: 0.6rem;
+}
+.slidev-layout.cover p { color: var(--fg-2); font-size: 1.6rem; margin: 0; }
+.slidev-layout.cover .nl-rule { width: 64px; height: 2px; background: var(--accent); margin: 1.6rem 0 0; }
+
+.slidev-layout.section {
+  --bg: var(--nl-ink-800);
+}
+.slidev-layout.section .nl-body { justify-content: center; }
+
+.slidev-layout.nl-center .nl-body { justify-content: center; }
+/* On a vertically centred slide these two read as captions to the figure
+   above them, so they centre with it. */
+.slidev-layout.nl-center .nl-type { text-align: center; }
+.slidev-layout.nl-center .nl-kv { width: max-content; margin-inline: auto; }
+
+.slidev-layout.paper {
+  --bg: var(--nl-paper-100);
+  --fg:   #08243E;
+  --fg-2: #3F5E7D;
+  --fg-3: #52708F;
+  --hair:   #CFDCE8;
+  --hair-2: #BCCDDD;
+  --accent: var(--nl-bronze-ink);
+  --grid-a: rgba(8, 36, 62, 0.5);
+  --grid-b: rgba(8, 36, 62, 0.8);
+  --grid-opacity: 0.09;
+}
+.slidev-layout.paper::after { background: none; }
+.slidev-layout.paper .nl-char,
+.slidev-layout.paper .nl-box { color: var(--nl-c-plain); }
+.slidev-layout.paper :not(pre) > code {
+  background: rgba(142, 90, 46, 0.09);
+  border-color: rgba(142, 90, 46, 0.24);
+}
+
+/* ==========================================================================
+   Reveals — pacing for narration, nothing more.
+   ========================================================================== */
+
+.slidev-layout .slidev-vclick-target { transition: opacity 200ms ease, transform 200ms ease; }
+.slidev-layout .slidev-vclick-hidden { opacity: 0; transform: translateY(3px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .slidev-layout .slidev-vclick-target { transition: none; }
+  .slidev-layout .slidev-vclick-hidden { transform: none; }
+}
+
+/* PDF export keeps the ink surface instead of printing white. */
+@media print {
+  .slidev-layout { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
