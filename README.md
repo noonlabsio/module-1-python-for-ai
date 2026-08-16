@@ -21,7 +21,7 @@ Pour démarrer un projet propre, utilisez le
 
 | № | Sujet | Code | Vidéo |
 |---|-------|------|-------|
-| 01 | Votre premier script Python utile | [`01-premier-script/`](01-premier-script/) | *à venir* |
+| 00 | Votre premier script Python utile | [`00-premier-script/`](01-premier-script/) | *à venir* |
 
 *Le tableau se remplit au fil des publications. Une vidéo tous les mardis.*
 
