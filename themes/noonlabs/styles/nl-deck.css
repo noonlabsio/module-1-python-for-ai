@@ -114,3 +114,49 @@
   -webkit-mask-image: url("data:image/png;base64,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");
           mask-image: url("data:image/png;base64,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");
 }
+
+/* ==========================================================================
+   Status colours and the live-coding badge.
+
+   ✅ and ❌ are emoji: JetBrains Mono has no coverage, so they fall back to
+   the system emoji font and render full-colour, off-weight and differently on
+   every machine. These are drawn instead, at the same stroke weight as every
+   other mark, and coloured semantically — so they read as ✅/❌ without the
+   typographic mess.
+
+   --nl-error is a desaturated brick rather than a pure red: #F00 next to
+   bronze reads as an alert box on a warm surface, and fights the accent.
+   ========================================================================== */
+
+:root { --nl-error: #D2837A; }
+
+.nl-deck .nl-good { color: var(--nl-verify); }
+.nl-deck .nl-bad  { color: var(--nl-error); }
+.nl-deck .nl-type.nl-good { color: var(--nl-verify); }
+.nl-deck .nl-type.nl-bad  { color: var(--nl-error); }
+
+/* the ✅/❌ list: marker colour comes from the item's own class */
+.nl-deck li.nl-good::before { content: "\2713"; color: var(--nl-verify); }
+.nl-deck li.nl-bad::before  { content: "\00D7"; color: var(--nl-error); }
+.nl-deck li.nl-good, .nl-deck li.nl-bad { color: var(--fg-2); }
+
+/* ---- live-coding badge ----------------------------------------------------
+   Sits in normal flow rather than absolutely positioned: a long h1 or a long
+   statement would collide with a pinned corner, and this deck has already
+   overflowed once. Right-aligned, ~28px of height including its margin. */
+.nl-deck .nl-live {
+  margin-top: 0.5rem;
+  text-align: right;
+}
+.nl-deck .nl-live span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--nl-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  color: var(--fg-3);
+  border: 1px solid var(--hair-2);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+}

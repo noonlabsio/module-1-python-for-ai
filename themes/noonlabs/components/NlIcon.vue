@@ -41,6 +41,7 @@ const PATHS = {
   prompt:    '<path d="M3 7l4 5-4 5"/><path d="M10 7l4 5-4 5"/><path d="M17 7l4 5-4 5"/>',
   arrow:     '<path d="M4 12h15"/><path d="M13 6l6 6-6 6"/>',
   check:     '<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/>',
+  cross:     '<circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/>',
   download:  '<path d="M12 3v12"/><path d="M7.5 10.5L12 15l4.5-4.5"/><path d="M4 20h16"/>',
   box:       '<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/>',
   layers:    '<path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/>',
