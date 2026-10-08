@@ -8,6 +8,11 @@ __pycache__/
 *.py[cod]
 .venv/
 
+# Claude Code
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+
 # Editors
 .vscode/
 .idea/
