@@ -160,3 +160,13 @@
   border-radius: 999px;
   padding: 0.15rem 0.6rem;
 }
+
+/* CSV table */
+.nl-cols > div:first-child table {
+  font-size: 0.75em;
+}
+
+.nl-cols > div:first-child th,
+.nl-cols > div:first-child td {
+  padding: 0.35em 0.6em;
+}

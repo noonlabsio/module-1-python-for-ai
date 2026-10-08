@@ -21,7 +21,7 @@ layout: default
 class: nl-deck
 ---
 
-# <span class="nl-logo nl-logo--python" /> Python Fundamentals
+# <span class="nl-logo nl-logo--python" /> Python Fundamentals for modern AI
 
 ## From Beginner to Industry-Ready
 
