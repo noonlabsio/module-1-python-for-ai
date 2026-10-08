@@ -16,7 +16,8 @@ Slide numbers refer to the 21-slide deck: 01 cover, 02 divider, 03-20
 content, 21 closing card.
 
 Not checkable here, documented only: the free-threaded build's official
-support in 3.14 (PEP 779) needs a free-threaded interpreter; the Python 3.15
+support in 3.14 (PEP 779) needs a free-threaded interpreter; C extensions such
+as NumPy releasing the GIL (slide 11's note) is library behaviour; the Python 3.15
 profiling package (slide 18) is checked only when run on 3.15+.
 
 Stdlib only.
@@ -624,6 +625,26 @@ def main():
     if V >= (3, 14):
         h = subprocess.run([sys.executable, "-m", "pdb", "-h"], capture_output=True, text=True).stdout
         check(19, "python -m pdb -p PID exists (3.14+)", "-p" in h, True)
+
+    # ── slide 20 · pitfalls ───────────────────────────────────────────────
+    def no_wraps(fn):
+        def wrapper(*a, **k):
+            return fn(*a, **k)
+        return wrapper
+
+    def with_wraps(fn):
+        @wraps(fn)
+        def wrapper(*a, **k):
+            return fn(*a, **k)
+        return wrapper
+
+    def documented():
+        """Totals by category."""
+
+    check(20, "without wraps: __name__ is wrapper, the docstring is gone",
+          (no_wraps(documented).__name__, no_wraps(documented).__doc__), ("wrapper", None))
+    check(20, "with wraps: both survive",
+          (with_wraps(documented).__name__, with_wraps(documented).__doc__), ("documented", "Totals by category."))
 
     print(f"\n{'ALL FACTS HOLD' if not FAILS else f'{len(FAILS)} DRIFTED — fix the slides:'}")
     for slide, label in FAILS:

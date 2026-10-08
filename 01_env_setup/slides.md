@@ -195,12 +195,12 @@ class: nl-deck
   <div class="n">03</div><div><span class="what">Control Flow</span></div>
   <div class="n">04</div><div><span class="what">Functions</span></div>
   <div class="n">05</div><div><span class="what">Data Structures</span></div>
-  <div class="n">06</div><div><span class="what">OOP</span></div>
+  <div class="n">06</div><div><span class="what">File I/O</span></div>
 </div>
 
 <div class="nl-recap">
-  <div class="n">07</div><div><span class="what">File I/O</span></div>
-  <div class="n">08</div><div><span class="what">Error Handling</span></div>
+  <div class="n">07</div><div><span class="what">Error Handling</span></div>
+  <div class="n">08</div><div><span class="what">OOP</span></div>
   <div class="n">09</div><div><span class="what">Standard Library</span></div>
   <div class="n">10</div><div><span class="what">Functional</span></div>
   <div class="n">11</div><div><span class="what">Advanced</span></div>
@@ -219,7 +219,7 @@ class: nl-deck
 </div>
 
 <div class="nl-statement mt-6">
-Each chapter ends with something that runs
+One chapter per video — each one builds on the last
 </div>
 
 <!--
@@ -295,11 +295,12 @@ python.org/downloads
 apt install python3
 ```
 
-<div class="nl-type mt-2"><NlIcon name="lock" /> 2 · Isolate</div>
+<div class="nl-type mt-2"><NlIcon name="download" /> 2 · Install uv</div>
 
 ```bash
-uv venv
-source .venv/bin/activate
+brew install uv                      # macOS
+winget install --id=astral-sh.uv -e  # Windows
+pipx install uv                      # Linux
 ```
 
 </div>
@@ -333,7 +334,8 @@ A verified install and an isolated environment, before the first real line
 SLIDE 7 - Installation
 On screen ~70 seconds, most of it live in the terminal.
 
-Say why step 2 exists, because every beginner skips it:
+Step 2 installs uv, the tool the next slide uses to isolate every project.
+Say why isolation matters, because every beginner skips it:
 "On n'installe jamais des paquets dans le Python du système. Un projet,
 un environnement. Ça vous évitera la phrase la plus coûteuse du métier :
 « ça marche sur ma machine »."
@@ -376,16 +378,18 @@ class: nl-deck
 
 ```bash
 python3 -m venv .venv
-source .venv/bin/activate
+source .venv/bin/activate  # macOS, Linux
+.venv\Scripts\activate     # Windows
 deactivate
 ```
 
 <div class="nl-type mt-2"><span class="nl-logo nl-logo--uv" /> uv — what we use here</div>
 
 ```bash
-uv venv
-uv add pandas
-uv sync --frozen
+uv init           # pyproject.toml
+uv add pandas     # + uv.lock, .venv
+uv run main.py    # no activate needed
+uv sync --frozen  # exactly uv.lock
 ```
 
 </div>
@@ -406,6 +410,14 @@ projet a besoin d'une version différente. Vous mettez à jour. Le premier
 projet ne démarre plus. Personne ne vous a prévenu."
 
 PAUSE. Then: "Un projet, un environnement. C'est tout."
+
+Walk the four uv lines in order. uv init crée le projet et son
+pyproject.toml. uv add ajoute pandas, écrit les versions exactes dans uv.lock
+et l'installe dans le dossier .venv. uv run lance le script dans cet
+environnement - pas besoin de l'activer.
+
+On Windows, the activate line is .venv\Scripts\activate - say it once for
+the standard library column.
 
 Point at `uv sync --frozen` - the line that separates a tutorial from
 production: "Cette commande installe exactement les versions du fichier de
@@ -574,7 +586,7 @@ The full code is in the description
 <div class="nl-next">
 
 Next video · Tuesday
-<strong>VIDEO 2 TITLE</strong>
+<strong>CHAPTER 02 — SYNTAX &amp; DATA TYPES</strong>
 
 </div>
 

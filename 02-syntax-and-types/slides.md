@@ -142,7 +142,7 @@ class: nl-deck
 <div class="nl-type nl-good"><NlIcon name="check" /> Good practice</div>
 
 <ul>
-<li class="nl-good">Explain **why**, not what</li>
+<li class="nl-good">Explain <strong>why</strong>, not what</li>
 <li class="nl-good">Document the assumption, not the syntax</li>
 <li class="nl-good">Keep them current — a stale comment is worse than none</li>
 </ul>
@@ -420,7 +420,7 @@ the formatter enforce it.
 </div>
 
 <div class="nl-statement mt-4">
-No operation changes a string — every one of them returns a new string
+No operation changes a string in place — you always get a new value back
 </div>
 
 <!--
@@ -528,7 +528,7 @@ class: nl-deck
 
 <div>
 
-<div class="nl-type"><NlIcon name="indent" /> Clean and reshape</div>
+<div class="nl-type"><NlIcon name="indent" /> Clean and reshape → str</div>
 
 <div class="nl-recap mt-2">
   <div class="n">strip()</div><div><span class="why">drop surrounding whitespace</span></div>
@@ -542,14 +542,14 @@ class: nl-deck
 
 <div>
 
-<div class="nl-type"><NlIcon name="split" /> Split, join, test</div>
+<div class="nl-type"><NlIcon name="split" /> Split, join, test → other types</div>
 
 <div class="nl-recap mt-2">
-  <div class="n">split()</div><div><span class="why">text to list — on a separator</span></div>
-  <div class="n">join()</div><div><span class="why">list back to text; the inverse</span></div>
-  <div class="n">find()</div><div><span class="why">position, or -1 if absent</span></div>
-  <div class="n">isdigit()</div><div><span class="why">every character a digit?</span></div>
-  <div class="n">in</div><div><span class="why">membership — not a method</span></div>
+  <div class="n">split()</div><div><span class="why">→ list, cut on a separator</span></div>
+  <div class="n">join()</div><div><span class="why">→ str, the list back to text</span></div>
+  <div class="n">find()</div><div><span class="why">→ int, position or -1</span></div>
+  <div class="n">isdigit()</div><div><span class="why">→ bool, all digits?</span></div>
+  <div class="n">in</div><div><span class="why">→ bool, an operator, not a method</span></div>
 </div>
 
 </div>
@@ -579,7 +579,7 @@ user or a file.
 </div>
 
 <div class="nl-statement mt-3">
-Every one of these returns a new string — <code>s</code> is never touched
+None of these change <code>s</code> — what comes back depends on the method
 </div>
 
 <div class="nl-live"><span><span class="nl-logo nl-logo--vscode" /> Live in VS Code</span></div>
@@ -799,7 +799,8 @@ Comparisons **chain**: `0 < x < 100` is one expression, and `x` is evaluated
 once. No `and` needed.
 
 `and` and `or` **short-circuit** — `and` stops at the first false, `or` at
-the first true. The right-hand side may never run.
+the first true. They return that operand, not always a bool:
+`name or "anonyme"` gives `"anonyme"` when `name` is empty.
 
 <ul class="mt-3">
 <li class="nl-good"><code>if data and data[0]</code> — the guard protects the access</li>
@@ -829,6 +830,10 @@ two lines at the bottom are the entire lesson - point at them:
 seconde. Inversez les deux, et votre programme plante sur une liste vide."
 
 PAUSE there. That pattern appears in every codebase they will ever read.
+
+One more sentence, for the new line on the slide: "Et ils renvoient
+l'opérande lui-même, pas forcément True ou False. name or « anonyme » donne
+« anonyme » quand name est vide - une valeur par défaut en une ligne."
 -->
 
 ---
@@ -858,13 +863,14 @@ is only one `None` — so it cannot lie. PEP 8 requires it.
 
 <div style="font-size: 1.1rem">
 
-<div class="nl-type"><NlIcon name="layers" /> Everything falsy</div>
+<div class="nl-type"><NlIcon name="layers" /> Common falsy values</div>
 
 - `False` and `None`
 - `0`, `0.0`, `0j`
 - `""`, `[]`, `{}`, `()`, `set()`
 
-Everything else is truthy. Which means:
+Almost everything else is truthy; a class can decide with `__bool__` or
+`__len__`. Which means:
 
 <ul class="mt-2">
 <li class="nl-bad"><code>"0"</code> is truthy — it is a non-empty string</li>

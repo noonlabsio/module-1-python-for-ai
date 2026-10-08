@@ -1567,7 +1567,7 @@ class: nl-deck
 <div class="nl-type"><NlIcon name="box" /> On the class</div>
 
 <div class="nl-recap mt-2">
-  <div class="n">frozen=True</div><div><span class="why">immutable, and hashable again</span></div>
+  <div class="n">frozen=True</div><div><span class="why">no reassignment; hashable again</span></div>
   <div class="n">order=True</div><div><span class="why">the four comparisons</span></div>
   <div class="n">unsafe_hash</div><div><span class="why">the name is the warning</span></div>
 </div>
@@ -1590,9 +1590,9 @@ class: nl-deck
 
 <div class="mt-4" style="font-size: 1.05rem">
 
-A plain `@dataclass` generates `__eq__` — so it walks straight into the trap
-from three slides ago. Its `__hash__` is `None` and it cannot go in a `set`.
-`frozen=True` is what buys it back.
+A plain `@dataclass` generates `__eq__`, so its `__hash__` is `None`.
+`frozen=True` buys the hash back, if every field is hashable: a list field can
+still be mutated, and makes `hash()` fail.
 
 </div>
 
@@ -1609,6 +1609,11 @@ exists.
 
 frozen first: l'objet devient immuable, toute affectation après la
 construction lève une FrozenInstanceError. Et le __hash__ revient.
+
+The caveat, in one breath, because frozen sounds stronger than it is:
+« gelé » interdit de réaffecter un champ, pas de modifier ce qu'il contient.
+Un champ liste peut toujours recevoir append, et hash échoue alors avec
+« unhashable type: 'list' ».
 
 Then take the payoff from slide 17:
 "Souvenez-vous du piège du hash. Une dataclass ordinaire génère __eq__ pour
@@ -1670,8 +1675,8 @@ hands back a replacement.
 
 <div style="font-size: 1.05rem">
 
-`beta`'s decorator used `@functools.wraps`. `alpha`'s did not, so every
-traceback through `alpha` reports the name `wrapper`.
+`wraps` copies `__name__` and `__doc__`, and sets `__wrapped__`. A traceback
+shows a `wrapper` frame either way: frames come from the code, not the name.
 
 </div>
 
@@ -1699,10 +1704,14 @@ avez écrit. Regardez à droite. alpha a perdu son nom : elle s'appelle
 renvoyée. beta a gardé le sien, parce que son décorateur utilise
 functools.wraps."
 
-"Pourquoi ça compte ? Parce que les traces d'erreur et les logs lisent
-__name__. Un décorateur sans wraps rend toutes vos fonctions anonymes dans
-les traces. Quand vous lisez « wrapper » trois fois dans une pile d'appels,
-vous savez maintenant pourquoi."
+"Pourquoi ça compte ? Parce que help, la documentation, et tous les outils
+qui inspectent une fonction lisent __name__ et __doc__. Sans wraps, ils
+voient « wrapper », et la docstring a disparu."
+
+Be precise about tracebacks, because it is a common misconception: dans une
+trace d'erreur, une ligne « wrapper » apparaît dans les deux cas, avec ou sans
+wraps. La trace lit le code, pas le nom. Et la fonction d'origine y apparaît
+aussi, juste en dessous.
 
 PAUSE.
 

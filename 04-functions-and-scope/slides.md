@@ -180,7 +180,7 @@ caller unpacks it. There is no special multiple-return mechanism.
 </div>
 
 <div class="nl-statement mt-3">
-A function that prints cannot be reused. A function that returns can.
+Separate calculation from display — a function that returns is easier to reuse and test
 </div>
 
 <!--
@@ -193,10 +193,10 @@ l'appelant le déballe. C'est le même déballage qu'au chapitre deux."
 
 Then the statement, and give it the production framing - this is the single
 most common beginner mistake in function design:
-"Une fonction qui affiche est inutilisable ailleurs. Vous ne pouvez pas la
-tester, vous ne pouvez pas l'appeler depuis une autre fonction, vous ne
-pouvez pas en réutiliser le résultat. Calculez et renvoyez. L'affichage,
-c'est le travail de l'appelant."
+"Une fonction qui affiche est difficile à réutiliser. Son résultat part à
+l'écran : pour le tester, ou pour s'en servir dans une autre fonction, il
+faudrait aller le rechercher. Calculez et renvoyez. L'affichage, c'est le
+travail de l'appelant."
 
 PAUSE. Then: "C'est vrai pour print. C'est vrai aussi pour écrire dans un
 fichier ou appeler une API."
@@ -733,7 +733,7 @@ has returned. That is the useful half of the enclosing scope.
 </div>
 
 <div class="nl-statement mt-3">
-Two functions sharing a global are two functions you cannot test separately
+Shared global state makes independent tests harder
 </div>
 
 <!--
@@ -742,7 +742,7 @@ On screen ~60 seconds.
 
 Be direct about global. Do not present it neutrally:
 "`global` marche. Et dans du code de production, c'est presque toujours le
-mauvais choix. Une fonction qui modifie un état global ne se teste pas
+mauvais choix. Une fonction qui modifie un état global se teste mal
 isolément - son résultat dépend de ce qui s'est passé avant."
 
 PAUSE.
@@ -916,7 +916,7 @@ layout: default
 class: nl-deck
 ---
 
-# if __name__ == "__main__"
+# `if __name__ == "__main__":`
 
 <div class="nl-cols mt-4">
 
@@ -959,7 +959,7 @@ writing files, hitting the network — as a side effect of importing.
 </div>
 
 <div class="nl-statement mt-3">
-Importing a module should never <em>do</em> anything
+Avoid side effects at import time — no I/O, no program start
 </div>
 
 <!--

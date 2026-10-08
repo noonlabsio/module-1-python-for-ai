@@ -380,8 +380,8 @@ it is lost. pandas 3 only warns: `ChainedAssignmentError`.
 
 <div style="font-size: 1.05rem">
 
-Every selection behaves like a copy. To change the original, use one indexer:
-`df.loc[row, col]`. `pd.col()` names a column inside `assign`.
+Every selection behaves like a copy. To change the original, assign on the
+DataFrame itself: `df.loc[row, col]`, or `df["col"]`. `pd.col()` works in `assign`.
 
 </div>
 
@@ -390,7 +390,7 @@ Every selection behaves like a copy. To change the original, use one indexer:
 </div>
 
 <div v-click class="nl-statement mt-3">
-One <code>.loc</code>, one assignment — a chained one changes a copy
+Assign on the DataFrame itself — a chained assignment changes a copy
 </div>
 
 <div class="nl-live"><span><span class="nl-logo nl-logo--vscode" /> Live in VS Code</span></div>
@@ -415,10 +415,14 @@ pandas 3 a fait le choix inverse. Toute sélection se comporte comme une
 copie. df de montant, puis crochet zéro : vous modifiez une copie, et elle
 disparaît."
 
-"Pour modifier l'original : un seul loc, la ligne et la colonne ensemble."
+"Pour modifier l'original, on affecte directement sur le DataFrame : un seul
+loc, la ligne et la colonne ensemble - ou df de colonne égale, pour une
+colonne entière. Ce qui ne marche jamais, c'est deux paires de crochets à la
+suite."
 
 [CLICK]
-"Un loc, une affectation. Une affectation enchaînée modifie une copie."
+"Affectez sur le DataFrame lui-même. Une affectation enchaînée modifie une
+copie."
 
 Time-sensitive: le Copy-on-Write est le seul mode depuis pandas 3.0, janvier
 2026. pd.col est nouveau dans la 3.0. Les tutoriels pandas 2 parlent de
@@ -1174,9 +1178,9 @@ Every value missing from the dict becomes NaN.
 
 <div>
 
-<div class="nl-type nl-good"><NlIcon name="check" /> One .loc[row, col]</div>
+<div class="nl-type nl-good"><NlIcon name="check" /> Assign on the DataFrame</div>
 
-The only assignment that reaches the original.
+`df.loc[row, col] = x`, or `df["col"] = values`.
 
 <div class="nl-type nl-good mt-3"><NlIcon name="check" /> replace, or map then fillna</div>
 

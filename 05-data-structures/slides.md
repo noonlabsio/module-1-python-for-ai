@@ -243,7 +243,8 @@ class: nl-deck
 <div class="nl-type"><NlIcon name="split" /> In place, or a new list?</div>
 
 `items.sort()` sorts the list and returns `None`. `sorted(items)` leaves it
-alone and returns a new list. Same for `reverse()` and `reversed()`.
+alone and returns a new list. `reverse()` also returns `None`; `reversed()`
+returns an iterator, not a list.
 
 <ul class="mt-3" style="font-size: 1.05rem">
 <li class="nl-bad"><code>items = items.sort()</code> — now <code>items</code> is <code>None</code></li>
@@ -261,7 +262,7 @@ Both take `key=` and `reverse=` — the lambda from chapter four goes here.
 </div>
 
 <div class="nl-statement mt-3">
-Methods that mutate return <code>None</code> — that is a deliberate warning
+In-place methods return <code>None</code> — <code>pop()</code> is the one that returns what it removed
 </div>
 
 <div class="nl-live"><span><span class="nl-logo nl-logo--vscode" /> Live in VS Code</span></div>
@@ -285,7 +286,12 @@ PAUSE.
 Then the design reason, which turns a gotcha into a rule:
 "Et ce n'est pas un accident. En Python, une méthode qui modifie sur place
 renvoie None, exprès, pour que vous ne l'enchaîniez pas par erreur. C'est
-une convention - `append`, `extend`, `sort`, `reverse`, toutes pareilles."
+une convention - `append`, `extend`, `sort`, `reverse`, toutes pareilles.
+Une exception, et elle a une raison : pop renvoie l'élément qu'il retire -
+c'est tout son intérêt."
+
+And reversed, said once: reversed ne renvoie pas une liste, mais un
+itérateur - le même objet paresseux que zip au chapitre trois.
 
 Callback to chapter four: key=lambda goes here.
 -->
@@ -476,7 +482,7 @@ name, _, city = person
 
 <div style="font-size: 1.1rem">
 
-<div class="nl-type"><NlIcon name="layers" /> Immutable, and therefore hashable</div>
+<div class="nl-type"><NlIcon name="layers" /> Immutable, and hashable if its contents are</div>
 
 You cannot change a tuple, so Python can hash it — which is why a tuple can
 be a dictionary key and a list cannot.
@@ -708,18 +714,12 @@ for row in rows:
     groups[row.kind].append(row)
 ```
 
-<div class="nl-type mt-2"><NlIcon name="arrow" /> Merging (3.9+)</div>
-
-```python
-merged = base | overrides
-base |= overrides
-```
 
 </div>
 
 <div style="font-size: 1.1rem">
 
-<div class="nl-type"><NlIcon name="layers" /> The pattern behind all three</div>
+<div class="nl-type"><NlIcon name="layers" /> The pattern behind both</div>
 
 Every one replaces "check whether the key exists, then initialise it, then
 update it" — three lines that are easy to get subtly wrong.
@@ -760,6 +760,10 @@ Do the word-count three times in VS Code, in order:
 d'une ligne est aussi la plus rapide, parce qu'elle est écrite en C."
 
 PAUSE.
+
+One line for merging, which left the slide: depuis Python 3.9, base barre
+verticale overrides fusionne deux dictionnaires, et les valeurs de droite
+gagnent.
 
 Then the general lesson, which is the real point:
 "La leçon n'est pas « apprenez Counter ». C'est : quand vous écrivez « si la
@@ -1117,7 +1121,7 @@ text[0] = "H"        # TypeError
 
 <div class="nl-type"><NlIcon name="layers" /> Why the distinction earns a slide</div>
 
-- Only immutable objects can be **dict keys** or **set elements**
+- Only hashable objects can be **dict keys** or **set elements**
 - Immutable objects are safe to share between threads
 - A mutable object passed to a function can be **changed by it**
 - Mutable default arguments are shared across calls — chapter four
@@ -1147,6 +1151,11 @@ not as trivia.
 Point at the fourth one and name the callback:
 "Le quatrième, vous l'avez déjà vu. Le piège de la liste par défaut au
 chapitre quatre. C'était ça, exactement ça."
+
+On the first line, be precise: la règle, c'est « hachable », pas
+« immuable ». Une instance de classe ordinaire est modifiable et peut quand
+même servir de clé. Un tuple qui contient une liste est immuable, et ne peut
+pas.
 
 Then the statement, slowly, because it is the sentence that unlocks the last
 four slides:
@@ -1334,11 +1343,10 @@ class: nl-deck
 
 <div>
 
-<div class="nl-type nl-bad"><NlIcon name="cross" /> Three shallow copies</div>
+<div class="nl-type nl-bad"><NlIcon name="cross" /> Shallow copies</div>
 
 ```python
 b = a[:]
-b = list(a)
 b = a.copy()
 ```
 
@@ -1505,7 +1513,7 @@ The full code is in the description
 <div class="nl-next">
 
 Next video · Tuesday
-<strong>CHAPTER 06 — OBJECT-ORIENTED PYTHON</strong>
+<strong>CHAPTER 06 — FILE I/O &amp; DATA FORMATS</strong>
 
 </div>
 

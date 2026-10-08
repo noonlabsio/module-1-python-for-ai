@@ -93,7 +93,7 @@ else:
 ```
 
 <ul class="mt-3" style="font-size: 1.05rem">
-<li class="nl-good">Order branches by likelihood, then by narrowness</li>
+<li class="nl-good">Specific conditions before the broader ones that contain them</li>
 <li class="nl-bad">Deep nesting — return or continue early instead</li>
 </ul>
 
@@ -749,17 +749,6 @@ else:
     print("Not found")
 ```
 
-<div class="nl-type nl-bad mt-2"><NlIcon name="cross" /> Without it</div>
-
-```python
-found = False
-for item in items:
-    if item == target:
-        found = True
-        break
-if not found:
-    print("Not found")
-```
 
 </div>
 
@@ -770,8 +759,8 @@ if not found:
 The `else` on a loop runs **only if the loop finished without breaking**. It
 is not the else of an `if`, and the keyword is genuinely badly named.
 
-Say "no break" in your head every time you read it and it stops being
-strange.
+Without it, you need a `found` flag: set inside the loop, tested after it,
+and kept in sync by hand.
 
 <ul class="mt-3" style="font-size: 1.05rem">
 <li class="nl-good">Search loops, validation, primality tests</li>
@@ -799,8 +788,10 @@ translation:
 « sinon ». Lisez « si aucun break ». À chaque fois."
 
 Then the comparison, and let the flag version look as heavy as it is:
-"À gauche en haut, cinq lignes. En dessous, huit lignes et une variable à
-tenir à jour. C'est le même programme."
+Type the flag version live, next to the slide's code: found égale False, mis à
+True dans la boucle, testé après.
+"À gauche, cinq lignes. Ici, huit lignes et une variable à tenir à jour.
+C'est le même programme."
 
 Demo both in VS Code with a target that is absent, then present. Two runs,
 fifteen seconds, and the semantics are clear.
@@ -1105,11 +1096,14 @@ On screen ~65 seconds. Close the chapter on the mistakes, not a summary.
 The first one has to be demonstrated, because the failure is
 counter-intuitive and silent. In VS Code:
 
-nums = [1, 2, 3, 4]
+nums = [2, 4, 6, 8]
 for n in nums:
     if n % 2 == 0:
         nums.remove(n)
-print(nums)   ->  [1, 3] is what they expect; show what actually happens
+print(nums)   ->  they expect [], every number is even; Python prints [4, 8]
+
+Use these four numbers, not 1 to 4: with [1, 2, 3, 4] the bug happens to give
+[1, 3], the right answer, and the skip stays invisible.
 
 "L'itérateur garde sa position. La liste, elle, se décale. Résultat : il
 saute des éléments. Pas d'erreur - juste un résultat faux."

@@ -132,6 +132,12 @@ check(7, "the warning says it never works",
       any("chained assignment never works" in " ".join(str(w.message).split()) for w in caught), True)
 d.loc[0, "montant"] = 0
 check(7, "one .loc assignment works", d.loc[0, "montant"], 0.0)
+d2 = df.copy()
+d2["montant"] = 1.0
+check(7, "assigning a whole column on the DataFrame reaches it", float(d2["montant"].sum()), 247.0)
+d2.iloc[0, 2] = 5.0
+d2.at[1, "montant"] = 6.0
+check(7, "iloc and at assignments reach it too", (d2.loc[0, "montant"], d2.loc[1, "montant"]), (5.0, 6.0))
 sel = df[df["montant"] > 100]
 sel["montant"] = 0
 check(7, "Copy-on-Write: changing a selection leaves the original", df["montant"].max(), 1250.0)

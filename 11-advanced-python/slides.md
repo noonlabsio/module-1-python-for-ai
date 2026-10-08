@@ -710,7 +710,7 @@ for t in threads: t.join()
 <div class="nl-type nl-bad"><NlIcon name="cross" /> One bytecode at a time</div>
 
 The GIL lets one thread run Python bytecode at a time. Four threads on pure
-computation take turns, and pay for the switching.
+Python computation take turns, and pay for the switching.
 
 <div class="nl-type mt-3"><NlIcon name="check" /> Where threads help</div>
 
@@ -726,7 +726,7 @@ Waiting: network, disk, `sleep`. A waiting thread releases the GIL. `Lock`,
 </div>
 
 <div v-click class="nl-statement mt-3">
-Threads overlap waiting, not computing — the GIL runs one at a time
+On the default build, threads overlap waiting — not pure-Python computing
 </div>
 
 <div class="nl-live"><span><span class="nl-logo nl-logo--vscode" /> Live in VS Code</span></div>
@@ -761,6 +761,10 @@ un autre.
 Time-sensitive, one sentence: depuis Python 3.14, une version sans GIL est
 officiellement supportée, mais elle reste optionnelle. Par défaut, le GIL est
 toujours là.
+
+And the scope of the rule, said once: tout ça vaut pour du code Python pur.
+Une extension en C, comme NumPy, peut libérer le GIL pendant ses calculs -
+des threads qui appellent NumPy peuvent vraiment calculer en parallèle.
 -->
 
 ---
@@ -1387,11 +1391,11 @@ class: nl-deck
 
 <div class="nl-type nl-bad"><NlIcon name="cross" /> Threads for CPU-bound work</div>
 
-The GIL runs one at a time: slower, not faster.
+On the default build, pure-Python threads take turns: slower, not faster.
 
 <div class="nl-type nl-bad mt-3"><NlIcon name="cross" /> A wrapper without wraps</div>
 
-Every traceback and log names the function `wrapper`.
+`help()` and `__name__` say `wrapper`, and the docstring is gone.
 
 <div class="nl-type nl-bad mt-3"><NlIcon name="cross" /> A blocking call in async def</div>
 
@@ -1428,8 +1432,9 @@ On screen ~60 seconds. Close the chapter on the mistakes, not a summary.
 Read the left column, then the right, pair by pair. Ten seconds each.
 
 "Des threads pour un calcul : plus lent, on l'a mesuré. Un wrapper sans
-wraps : toutes vos traces parlent de « wrapper ». Un time.sleep dans une
-coroutine : toute la boucle s'arrête, et toutes les tâches avec."
+wraps : help et __name__ parlent de « wrapper », et la docstring a disparu.
+Un time.sleep dans une coroutine : toute la boucle s'arrête, et toutes les
+tâches avec."
 
 PAUSE.
 

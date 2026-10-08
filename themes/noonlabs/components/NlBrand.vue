@@ -9,7 +9,7 @@
 <template>
   <div class="nl-brand" aria-hidden="true">
     <span class="nl-mark nl-mark-glyph" />
-    <span class="nl-brand-name"><i class="a" /><i class="b" /></span>
+    <span class="nl-brand-name"><i class="nl-brand-a" /><i class="nl-brand-b" /></span>
   </div>
 </template>
 

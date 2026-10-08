@@ -254,7 +254,9 @@ html, body, #slide-container { background: var(--nl-ink-950); }
    Components. Prefix nl- throughout so nothing collides with UnoCSS.
    ========================================================================== */
 
-/* --- the brand mark, top-left on every teaching slide -------------------- */
+/* --- the brand mark, top-left on every teaching slide --------------------
+   Classes are nl-brand-a/-b, not a/b: UnoCSS reads a bare "b" as its
+   border utility and drew a box around the second half of the name. */
 .nl-brand {
   position: absolute;
   top: 1.5rem;
@@ -270,10 +272,10 @@ html, body, #slide-container { background: var(--nl-ink-950); }
 }
 
 .nl-brand .nl-brand-name { display: inline-flex; }
-.nl-brand .a { font-style: normal; font-weight: 600; color: var(--fg); }
-.nl-brand .b { font-style: normal; font-weight: 300; color: var(--fg-2); }
-.nl-brand .a::before { content: var(--nl-brand-a); }
-.nl-brand .b::before { content: var(--nl-brand-b); }
+.nl-brand .nl-brand-a { font-style: normal; font-weight: 600; color: var(--fg); }
+.nl-brand .nl-brand-b { font-style: normal; font-weight: 300; color: var(--fg-2); }
+.nl-brand .nl-brand-a::before { content: var(--nl-brand-a); }
+.nl-brand .nl-brand-b::before { content: var(--nl-brand-b); }
 
 /* The mark reserves its own band so a heading never collides with it. */
 .nl-frame .nl-body { padding-top: 2.2rem; }
