@@ -1067,7 +1067,7 @@ On screen ~60 seconds. Concept slide, no live coding needed.
 période, comme un groupby sur le calendrier."
 
 Read the numbers: le mois entier, 5308,39. Par semaine : mille sept cent
-quarante et un la première - le loyer est tombé le premier janvier - puis
+quarante et un la première - le loyer est tombé le trois janvier - puis
 huit cent vingt-cinq. pct_change : moins cinquante-trois pour cent d'une
 semaine à l'autre.
 

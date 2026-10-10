@@ -272,6 +272,8 @@ check(16, "a DatetimeIndex", isinstance(ts.index, pd.DatetimeIndex), True)
 check(16, "resample('ME').sum(): 5308.39", round(ts.resample("ME").sum().iloc[0], 2), 5308.39)
 w = ts.resample("W").sum()
 check(16, "weekly totals start 1741.86, 825.12", [round(x, 2) for x in w.iloc[:2]], [1741.86, 825.12])
+check(16, "the rent falls on January 3, inside the first week",
+      (str(ts.idxmax().date()), ts.max(), ts.idxmax() <= w.index[0]), ("2026-01-03", 1250.0, True))
 pc = w.pct_change().round(3).iloc[:2].tolist()
 check(16, "pct_change: nan, -0.526", (bool(np.isnan(pc[0])), pc[1]), (True, -0.526))
 check(16, "shift(1) moves one period", round(w.shift(1).iloc[1], 2), 1741.86)

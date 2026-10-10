@@ -52,5 +52,9 @@ src: ../12-numpy/slides.md#2-20
 ---
 
 ---
-src: ../13-pandas-and-modern-dataframe-libraries/slides.md#2-21
+src: ../13-pandas-and-modern-dataframe-libraries/slides.md#2-20
+---
+
+---
+src: ../14-data-visualization/slides.md#2-19
 ---

@@ -39,7 +39,8 @@ CHAPTERS = [
     ("10-functional-programming", False, False),
     ("11-advanced-python", False, False),
     ("12-numpy", False, False),
-    ("13-pandas-and-modern-dataframe-libraries", False, True),
+    ("13-pandas-and-modern-dataframe-libraries", False, False),
+    ("14-data-visualization", False, True),
 
 ]
 
