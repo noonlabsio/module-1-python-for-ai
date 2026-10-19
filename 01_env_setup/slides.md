@@ -51,7 +51,7 @@ reconstruire avec les mêmes paquets."
 
 Restate the format so nobody wonders:
 "Les diapositives, c'est pour les concepts. Le code, on l'écrit ensemble
-dans VS Code."
+dans Visual Studio Code, qu'on appellera VS Code."
 -->
 
 ---
@@ -80,7 +80,7 @@ class: nl-deck
 <div class="nl-type"><NlIcon name="layers" /> What you will be able to do</div>
 
 - Read and write idiomatic Python
-- Clean and analyse data with NumPy and pandas
+- Clean and analyse data with NumPy, pandas and Polars
 - Test, lint and ship code someone else can run
 
 </div>
@@ -114,7 +114,7 @@ est en ligne."
 
 [CLICK 2]
 "Et ce que vous saurez faire : lire et écrire du Python propre, analyser
-des données avec NumPy et pandas, et livrer du code que quelqu'un d'autre
+des données avec NumPy, pandas et Polars, et livrer du code que quelqu'un d'autre
 peut lancer."
 
 PAUSE.
@@ -173,7 +173,7 @@ class: nl-deck
 <div class="nl-type"><NlIcon name="server" /> Data &amp; production</div>
 
 <div class="nl-recap mt-2">
-  <div class="n">13</div><div><span class="why">pandas</span></div>
+  <div class="n">13</div><div><span class="why">pandas &amp; Polars</span></div>
   <div class="n">14</div><div><span class="why">Visualization</span></div>
   <div class="n">15</div><div><span class="why">APIs</span></div>
   <div class="n">16</div><div><span class="why">Testing</span></div>
@@ -200,7 +200,8 @@ One column per click, one sentence each.
 "Les six premiers, c'est le langage."
 
 [CLICK 2]
-"Les six suivants, c'est la façon d'organiser un vrai programme."
+"Les six suivants : organiser un vrai programme, puis les premiers outils
+pour les données, avec NumPy."
 
 [CLICK 3]
 "Les six derniers, c'est les données, et ce qui sépare un script d'un
@@ -307,6 +308,9 @@ Point at the file: "Vous écrivez ça."
 Point at the terminal: "L'interpréteur fait ça." Then, slowly:
 "Il fait exactement ce que le texte dit. Pas ce que vous vouliez dire. Une
 faute de frappe, et il s'arrête."
+
+"Plus tard, on ne tapera plus python directement : on passera par uv run.
+On verra pourquoi."
 
 PAUSE.
 
@@ -472,6 +476,7 @@ Then the right column, three words: isolation, une trace écrite, et on
 reconstruit les mêmes versions.
 
 [CLICK 4]
+"Le code n'est pas la seule chose qui tourne : son environnement aussi."
 -->
 
 ---
@@ -479,11 +484,11 @@ layout: default
 class: nl-deck
 ---
 
-# VS Code: Why an IDE
+# Visual Studio Code: Why an IDE
 
 <div class="nl-cols mt-4">
 
-<div style="font-size: 1.1rem">
+<div v-click style="font-size: 1.1rem">
 
 <div class="nl-type"><NlIcon name="layers" /> One window for the whole job</div>
 
@@ -498,7 +503,7 @@ debugger and Git built in.
 
 </div>
 
-<div>
+<div v-click>
 
 <div class="nl-type"><NlIcon name="file" /> The four areas you use daily</div>
 
@@ -523,8 +528,19 @@ If you remember one shortcut, make it <code>Ctrl+Shift+P</code>
 SLIDE 8 - VS Code tour
 On screen ~60 seconds, most of it live in VS Code.
 
+[CLICK 1]
 "Un éditeur de texte, ça édite du texte. Un IDE comprend ce que vous
 écrivez. Il vous montre l'erreur avant que vous lanciez le programme."
+
+"Seul, VS Code ne comprend pas encore Python. Ce sont les extensions de la
+diapositive suivante qui le lui apprennent."
+
+Point at the two bullets:
+"Sur Mac, Cmd à la place de Ctrl, sauf pour le terminal : Ctrl+backtick
+partout."
+
+[CLICK 2]
+Point at the table: the four areas, in the order you will show them.
 
 [LIVE]
 Switch to VS Code with an empty folder open (File > Open Folder). Tour the
@@ -536,15 +552,11 @@ it:
   No shortcut? Show the menu once: Terminal, New Terminal.
 - Ctrl+Shift+P: type « theme » to show that every setting is a command.
 
-On a Mac: "Sur Mac, Cmd à la place de Ctrl, sauf pour le terminal :
-Ctrl+backtick partout."
-
 [BACK]
 
 PAUSE.
 
-[CLICK]
-
+[CLICK 3]
 "Vous ne savez pas où est une option ? Ctrl+Shift+P, et vous tapez ce que
 vous cherchez."
 -->
@@ -558,7 +570,7 @@ class: nl-deck
 
 <div class="nl-cols mt-4">
 
-<div>
+<div v-click>
 
 <div class="nl-type"><NlIcon name="box" /> Install these four</div>
 
@@ -571,7 +583,7 @@ class: nl-deck
 
 </div>
 
-<div style="font-size: 1.1rem">
+<div v-click style="font-size: 1.1rem">
 
 <div class="nl-type"><NlIcon name="download" /> How</div>
 
@@ -598,11 +610,19 @@ Pylance finds the mistake. Error Lens puts it where you are looking.
 SLIDE 9 - Extensions
 On screen ~50 seconds, live in VS Code.
 
-[LIVE]
-Ctrl+Shift+X. Search « Python », install the one published by Microsoft.
-Point at the extensions that come with it:
+[CLICK 1]
+"Quatre extensions. Chacune a une raison d'être là."
+
+[CLICK 2]
 "Une installation, et vous avez Pylance, le débogueur, et la gestion des
 environnements."
+
+Point at the last bullet:
+"Méfiez-vous des listes de vingt extensions indispensables."
+
+[LIVE]
+Ctrl+Shift+X. Search « Python », install the one published by Microsoft.
+Point at the extensions that come with it.
 
 Then search « Error Lens » (publisher: Alexander, id usernamehw.errorlens)
 and « Jupyter » (Microsoft). Install both.
@@ -611,14 +631,10 @@ and « Jupyter » (Microsoft). Install both.
 
 PAUSE.
 
+[CLICK 3]
 "Pylance comprend votre code. Error Lens affiche le message directement sur
 la ligne. Sans lui, l'erreur est soulignée en rouge, et il faut aller
 chercher le message."
-
-[CLICK]
-
-"Quatre extensions. Chacune a une raison d'être là. Méfiez-vous des listes
-de vingt extensions indispensables."
 -->
 
 ---
@@ -711,6 +727,9 @@ Be fair about when conda is the right tool:
 "Si votre projet dépend de choses qui ne sont pas du Python, comme une pile
 GPU ou des bibliothèques géospatiales, conda est souvent le bon choix."
 
+"Si un jour vous choisissez conda, passez par Miniforge : il utilise
+conda-forge, qui reste gratuit."
+
 [CLICK 3]
 Then why this course does not use it:
 "Nos dépendances s'installent depuis PyPI en paquets déjà compilés, des
@@ -722,6 +741,7 @@ paid terms for organisations above 200 people, while conda-forge stays
 free. VERIFY BEFORE RECORDING: Anaconda's terms change.
 
 [CLICK 4]
+"conda gère une pile logicielle. uv gère un projet Python."
 -->
 
 ---
@@ -731,6 +751,21 @@ class: nl-deck
 
 # Installing uv and Python 3.14
 
+<div class="nl-cols mt-4">
+
+<div v-click style="font-size: 1.1rem">
+
+<div class="nl-type"><span class="nl-logo nl-logo--uv" /> What uv is</div>
+
+One tool for Python, environments and packages.
+
+<ul class="mt-3" style="font-size: 1.05rem">
+<li class="nl-good"><code>uv</code> not found? Open a new terminal</li>
+<li class="nl-good">Use 3.14 to follow along exactly</li>
+</ul>
+
+</div>
+
 <div v-click>
 
 <div class="nl-type"><NlIcon name="terminal" /> In the VS Code terminal (Ctrl+&#96;): macOS, Linux</div>
@@ -738,6 +773,8 @@ class: nl-deck
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
+
+</div>
 
 </div>
 
@@ -765,20 +802,6 @@ uv python list
 
 </div>
 
-<div v-click style="font-size: 1.1rem">
-
-<div class="nl-type"><span class="nl-logo nl-logo--uv" /> What uv is</div>
-
-One fast tool, written in Rust, that installs Python, creates
-environments and manages packages. It replaces pip, venv and pyenv.
-
-<ul class="mt-3" style="font-size: 1.05rem">
-<li class="nl-good"><code>uv</code> not found? Open a new terminal</li>
-<li class="nl-good">Use 3.14 to follow along exactly</li>
-</ul>
-
-</div>
-
 </div>
 
 <div v-click class="nl-statement mt-3">
@@ -792,16 +815,27 @@ SLIDE 11 - Installing uv and Python
 On screen ~60 seconds, live in the VS Code terminal.
 
 [CLICK 1]
-Point at the curl line: "Sur macOS et Linux, cette ligne."
+"Un seul outil. Il installe Python, il crée les environnements, il gère les
+paquets. Avant, il en fallait trois ou quatre."
+
+Point at the second bullet:
+"Pourquoi 3.14 ? C'est la version de tout ce cours. Utilisez-la pour
+suivre exactement : avec une autre version, certains messages d'erreur ne
+seront pas les mêmes."
 
 [CLICK 2]
-"Sous Windows, celle-ci, dans PowerShell."
+Point at the curl line: "Sur macOS et Linux, cette ligne."
+"Cette ligne télécharge un script et l'exécute. Vous pouvez le lire avant :
+remplacez « | sh » par « | less »."
 
 [CLICK 3]
+"Sous Windows, celle-ci, dans PowerShell."
+
+[CLICK 4]
 "Ensuite, Python lui-même : trois commandes."
 
 [LIVE]
-Open the terminal with Ctrl+backtick and paste the block for your system.
+Open the terminal with Ctrl+backtick and paste the line for your system.
 The installer adds uv to your PATH; if `uv` is not found afterwards, open a
 new terminal (the trash icon, then Ctrl+backtick again).
 
@@ -817,17 +851,10 @@ Point at the 3.14 line marked as installed.
 
 [BACK]
 
-[CLICK 4]
-"Un seul outil. Il installe Python, il crée les environnements, il gère les
-paquets. Avant, il en fallait trois ou quatre."
-
 PAUSE.
 
-"Pourquoi 3.14 ? C'est la version de tout ce cours. Utilisez-la pour
-suivre exactement : avec une autre version, certains messages d'erreur ne
-seront pas les mêmes."
-
 [CLICK 5]
+"uv installe aussi Python : pas d'installateur, pas de case PATH à cocher."
 
 VERIFY BEFORE RECORDING: Python 3.15 is out since October 2026. Keep 3.14
 on screen only if every chapter is recorded on 3.14.
@@ -942,6 +969,9 @@ une bibliothèque ; sans ce drapeau, les versions récentes de uv créent un
 dossier src. « python 3.14 » fixe la version du projet.
 
 Type: cd hello-ai, then code -r . to reopen VS Code on the project.
+"Si la commande code n'est pas reconnue : File, Open Folder. Sur macOS,
+installez-la une fois depuis la palette : « Shell Command: Install 'code'
+command in PATH ». La fenêtre se recharge : rouvrez un terminal."
 
 Type: uv venv
 Expected: "Using CPython 3.14.x" then "Creating virtual environment at:
@@ -1244,6 +1274,8 @@ VERIFY BEFORE RECORDING: the pandas version uv writes. Update the slide to
 what your uv add prints.
 
 [CLICK 7]
+"pyproject.toml dit ce que vous voulez. uv.lock dit exactement ce que vous
+avez obtenu."
 -->
 
 ---
@@ -1337,7 +1369,6 @@ son usage."
 [CLICK 3]
 "Le carnet : des cellules, avec le résultat juste en dessous."
 
-[CLICK 4]
 "Essayons la console."
 
 [LIVE]
@@ -1360,6 +1391,10 @@ Type: exit()
 
 [BACK]
 
+[CLICK 4]
+"REPL : lire, évaluer, afficher, recommencer. Et tout est oublié quand vous
+tapez exit()."
+
 [CLICK 5]
 "La console, c'est pour demander. Le carnet, c'est pour explorer. Le
 fichier, c'est pour garder."
@@ -1381,15 +1416,7 @@ class: nl-deck
 A notebook is a list of **cells**: code or text. The **kernel** is a
 Python process that runs them and keeps every variable in memory.
 
-<ul class="mt-3" style="font-size: 1.05rem">
-<li class="nl-good">The number <code>[3]</code> shows the run order</li>
-<li class="nl-bad">Cells run out of order hide bugs</li>
-<li class="nl-good">Restart and Run All before you trust a result</li>
-</ul>
-
 </div>
-
-<div>
 
 <div v-click>
 
@@ -1405,15 +1432,27 @@ uv add --dev ipykernel
 
 </div>
 
+</div>
+
+<div class="nl-cols mt-3">
+
 <div v-click>
 
-<div class="nl-type mt-3"><span class="nl-logo nl-logo--jupyter" /> JupyterLab in the browser</div>
+<ul style="font-size: 1.05rem">
+<li class="nl-good">The number <code>[3]</code> shows the run order</li>
+<li class="nl-bad">Cells run out of order hide bugs</li>
+<li class="nl-good">Restart and Run All before you trust a result</li>
+</ul>
+
+</div>
+
+<div v-click>
+
+<div class="nl-type"><span class="nl-logo nl-logo--jupyter" /> JupyterLab in the browser</div>
 
 ```bash
 uv run --with jupyter jupyter lab
 ```
-
-</div>
 
 </div>
 
@@ -1427,8 +1466,15 @@ The kernel remembers what you ran, not what you see on the page
 
 <!--
 SLIDE 16 - Jupyter
-On screen ~65 seconds, live in VS Code. Demo first: the slide shows only
-its title until you come back.
+On screen ~65 seconds, live in VS Code.
+
+[CLICK 1]
+"Un carnet, c'est des cellules. Le noyau, c'est le Python qui les exécute,
+et il garde tout en mémoire."
+
+[CLICK 2]
+"Pour VS Code : ipykernel dans le projet, puis Select Kernel, et le .venv
+du projet."
 
 [LIVE]
 Type: uv add --dev ipykernel
@@ -1454,25 +1500,22 @@ browser on localhost port 8888. Ctrl+C in the terminal to stop it.
 
 [BACK]
 
-[CLICK 1]
-"Un carnet, c'est des cellules. Le noyau, c'est le Python qui les exécute,
-et il garde tout en mémoire. Le numéro entre crochets, c'est l'ordre
-d'exécution."
+[CLICK 3]
+"Le numéro entre crochets, c'est l'ordre d'exécution. Des cellules lancées
+dans le désordre cachent des bugs."
 
 PAUSE.
 
-[CLICK 2]
-"Pour VS Code : ipykernel dans le projet, puis Select Kernel, et le .venv
-du projet."
+"Avant de faire confiance à un résultat : Restart, puis Run All."
 
-[CLICK 3]
+[CLICK 4]
 "JupyterLab, dans le navigateur. Jupyter n'est pas ajouté au projet : uv
 le met dans un environnement à part, en cache. pyproject.toml et .venv ne
 changent pas."
 
-[CLICK 4]
+[CLICK 5]
 "Le noyau se souvient de ce que vous avez exécuté, pas de ce que vous
-voyez. Avant de faire confiance à un résultat : Restart, puis Run All."
+voyez."
 -->
 
 ---
@@ -1527,7 +1570,7 @@ it.
 
 <ul class="mt-2" style="font-size: 1.05rem">
 <li class="nl-bad">Data that must not leave your machine</li>
-<li class="nl-bad">Long jobs: idle sessions time out</li>
+<li class="nl-bad">Long jobs: runtimes have time limits</li>
 </ul>
 
 </div>
@@ -1546,7 +1589,7 @@ On screen ~55 seconds. Have colab.research.google.com open in a tab.
 
 [CLICK 1]
 "Colab, c'est un carnet Jupyter dans le navigateur, sur une machine de
-Google. Rien à installer, et parfois une carte graphique gratuite."
+Google. Rien à installer, et une carte graphique gratuite, quand il y en a."
 
 PAUSE.
 
@@ -1562,13 +1605,16 @@ clic."
 [CLICK 4]
 "Et votre code tourne chez Google : des données qui ne doivent pas quitter
 votre machine n'ont rien à faire là. Les longs calculs non plus : une
-session inactive s'arrête."
+session a une durée limitée, et elle s'arrête si vous êtes inactif. Google
+ne publie pas ces limites, elles changent."
 
 Optional, one sentence: Google's « Google Colab » extension lets a VS Code
 notebook run on a Colab runtime, so you can keep your editor and borrow
 their GPU.
 
 [CLICK 5]
+"Colab, c'est une machine empruntée : on essaie là-bas, on garde dans son
+projet."
 
 VERIFY BEFORE RECORDING: free-tier GPU access and session limits change
 without notice. Say "quand il y en a" about GPUs.
@@ -1737,6 +1783,7 @@ eux, sont les mêmes."
 "Sous Windows, Remove-Item à la place de rm."
 
 [CLICK 7]
+"On partage la recette : uv.lock reconstruit les mêmes paquets."
 -->
 
 ---

@@ -33,11 +33,13 @@ import subprocess
 import sys
 import tempfile
 import tomllib
+import urllib.request
 from pathlib import Path
 
 FAILS = []
 NETWORK = "--network" in sys.argv
 PANDAS_VERSION = 'import pandas; print(pandas.__version__)'   # slide 18, typed as is
+REPO = Path(__file__).resolve().parent.parent
 
 
 def check(slide, label, actual, expected):
@@ -84,6 +86,27 @@ def new_project(tmp, name, python="3.14"):
     return Path(tmp) / name
 
 
+def fetch(url):
+    """The text at url, or the error, so a network failure reads as drift.
+
+    Sent as curl, the client the slide uses: astral.sh answers Python's
+    default user agent with 403 Forbidden.
+    """
+    try:
+        with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "curl/8.5.0"}), timeout=20) as r:
+            return r.read().decode("utf-8", "replace")
+    except Exception as e:
+        return f"<{type(e).__name__}: {e}>"
+
+
+def curriculum_section(number):
+    """The body of '### NN · Title' in the curriculum, up to the next ### heading."""
+    text = (REPO / "curriculum-module-1.md").read_text()
+    start = text.index(f"### {number:02} ")
+    end = text.find("\n### ", start + 1)
+    return text[start:end if end != -1 else None]
+
+
 def lock_packages(proj):
     return {p["name"]: p for p in tomllib.loads((proj / "uv.lock").read_text())["package"]}
 
@@ -114,6 +137,13 @@ print(f"CPython {sys.version}\n")
 if shutil.which("uv") is None:
     sys.exit("uv is not on PATH: slides 10-20 cannot be checked. Install uv first.")
 print(f"{uv('--version', cwd='.').stdout.strip()}\n")
+
+
+# ── slides 03-04 · what the course covers: Polars in chapter 13, NumPy in 12
+section13 = curriculum_section(13)
+check(3, "the curriculum covers Polars, in chapter 13", ("Polars" in section13, "Polars" in (REPO / "13-pandas-and-modern-dataframe-libraries" / "slides.md").read_text()), (True, True))
+check(4, 'chapter 13 is "pandas & Polars": a dataframe-libraries chapter', section13.splitlines()[0], "### 13 · Pandas & Modern Dataframe Libraries")
+check(4, "chapters 07-12 end with NumPy", curriculum_section(12).splitlines()[0], "### 12 · NumPy")
 
 
 # ── slide 05 · what you write, what the interpreter does ──────────────────
@@ -176,7 +206,7 @@ with tempfile.TemporaryDirectory() as tmp:
     check(18, "--locked refuses a lock that no longer matches pyproject.toml", uv("sync", "--locked", cwd=stale).returncode != 0, True)
 
     if not NETWORK:
-        for slide, label in [(10, "ready-made wheels"), (12, "auto .venv on uv add; the diagram's versions"),
+        for slide, label in [(10, "ready-made wheels; Miniforge uses conda-forge"), (11, "the install line downloads a shell script"), (12, "auto .venv on uv add; the diagram's versions"),
                              (14, "uv add pandas, tzdata pin and marker"), (16, "ipykernel, --with, the kernel demo"),
                              (18, "rebuild with a pandas import"), (19, "uv add records; .venv size"), (20, "the challenge")]:
             skip(slide, label)
@@ -217,6 +247,14 @@ with tempfile.TemporaryDirectory() as tmp:
                 if not any("cp314" in w and tag in w for w in wheels):
                     missing.append(f"{name}:{tag}")
         check(10, "every dependency has a cp314 wheel for Windows, macOS, Linux (or a pure-Python one)", missing, [])
+
+        # slide 10 note · Miniforge's only channel is conda-forge
+        readme = fetch("https://raw.githubusercontent.com/conda-forge/miniforge/main/README.md")
+        check(10, "Miniforge: conda-forge is the default (and only) channel",
+              "channel is set as the default (and only) channel" in readme and "conda-forge" in readme, True)
+
+        # slide 11 · `curl … | sh` downloads a shell script and runs it; `| less` shows it instead
+        check(11, "astral.sh/uv/install.sh is a shell script", fetch("https://astral.sh/uv/install.sh").splitlines()[0], "#!/bin/sh")
 
         # slide 12 · the diagram's two projects, and uv add creating .venv
         check(12, "diagram: hello-ai's .venv holds pandas 3.0.6", uv("run", "python", "-c", PANDAS_VERSION, cwd=proj).stdout.strip(), "3.0.6")
