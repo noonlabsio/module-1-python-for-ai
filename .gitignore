@@ -31,6 +31,10 @@ exports/
 # Jupyter
 .ipynb_checkpoints/
 
+# Archives (any depth)
+archieves/
+archives/
+
 # Env / secrets
 .env
 .env.*
