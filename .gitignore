@@ -38,3 +38,7 @@ archives/
 # Env / secrets
 .env
 .env.*
+
+# Chapter 01 working files
+01_env_setup/backup*/
+01_env_setup/verify-facts.py
