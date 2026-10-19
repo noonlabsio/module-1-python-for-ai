@@ -92,55 +92,7 @@ A table, written as plain text
 <style> .nl-cols > div:first-child table { font-size: 0.5em; } .nl-cols > div:first-child th, .nl-cols > div:first-child td { padding: 0.35em 0.6em; } </style>
 
 <!--
-SLIDE 2 - What a CSV actually is
-On screen ~20 seconds. Appears ~0:55.
-This plants "it is just text" so the TypeError lands at 6:00.
-Build: table -> equals -> raw text.
--->
-
----
-layout: center
----
-
-
-# Why `"13.16" + 0`  fails
-
-<div class="nl-cols mt-12">
-
-<div v-click>
-
-<div class="nl-chars">
-  <div class="nl-char">1</div>
-  <div class="nl-char">3</div>
-  <div class="nl-char">.</div>
-  <div class="nl-char">1</div>
-  <div class="nl-char">6</div>
-</div>
-
-<div class="nl-type mt-4">5 characters</div>
-<div class="nl-type mt-1"><strong>str</strong></div>
-
-</div>
-
-<div v-click>
-
-<div class="text-center">
-  <div class="nl-box">13.16</div>
-</div>
-
-<div class="nl-type mt-4">1 number</div>
-<div class="nl-type mt-1"><strong>float</strong></div>
-
-</div>
-
-</div>
-
-<div v-click class="nl-statement mt-14">
-<code>float("13.16")</code> &nbsp;→&nbsp; 13.16
-</div>
-
-<!--
-SLIDE 3 - String vs Number  *** MOST IMPORTANT SLIDE ***
+SLIDE 2 - String vs Number  *** MOST IMPORTANT SLIDE ***
 On screen ~35 seconds. Appears ~6:15, during the TypeError.
 The error message says WHAT broke. This slide says WHY.
 Build: title -> str side -> float side -> conversion line.
@@ -228,11 +180,139 @@ Look things up by name (key), not by position
 </style>
 
 <!--
+SLIDE 3 - What a CSV actually is
+On screen ~20 seconds. Appears ~0:55.
+This plants "it is just text" so the TypeError lands at 6:00.
+Build: table -> equals -> raw text.
+-->
+
+---
+layout: center
+---
+
+
+# Why `"13.16" + 0`  fails
+
+<div class="nl-cols mt-12">
+
+<div v-click>
+
+<div class="nl-chars">
+  <div class="nl-char">1</div>
+  <div class="nl-char">3</div>
+  <div class="nl-char">.</div>
+  <div class="nl-char">1</div>
+  <div class="nl-char">6</div>
+</div>
+
+<div class="nl-type mt-4">5 characters</div>
+<div class="nl-type mt-1"><strong>str</strong></div>
+
+</div>
+
+<div v-click>
+
+<div class="text-center">
+  <div class="nl-box">13.16</div>
+</div>
+
+<div class="nl-type mt-4">1 number</div>
+<div class="nl-type mt-1"><strong>float</strong></div>
+
+</div>
+
+</div>
+
+<div v-click class="nl-statement mt-14">
+<code>float("13.16")</code> &nbsp;→&nbsp; 13.16
+</div>
+
+<!--
 SLIDE 4 - The dictionary
 On screen ~25 seconds. Appears ~10:15, when you type totals = {}.
 Values are the REAL output of the script - do not invent numbers here.
 Build: title -> rows one by one -> bottom line.
 -->
+---
+layout: default
+---
+
+# Sorting by Amount
+
+<div class="nl-cols mt-6">
+
+<div>
+
+<div class="nl-type">One pair</div>
+
+<div class="nl-kv mt-3" style="font-size: 1.3rem">
+  <div class="k">x[0]</div>
+  <div class="arrow">→</div>
+  <div class="v">'Logement'</div>
+
+  <div class="k">x[1]</div>
+  <div class="arrow">→</div>
+  <div class="v">1670.03</div>
+</div>
+
+<div class="nl-type mt-6">Biggest first</div>
+
+<div class="nl-recap mt-3" style="font-size: 1.05rem">
+  <div class="n">1</div>
+  <div><span class="what">Logement</span> &nbsp;<span class="why">1670.03</span></div>
+
+  <div class="n">2</div>
+  <div><span class="what">Courses</span> &nbsp;<span class="why">955.33</span></div>
+
+  <div class="n">3</div>
+  <div><span class="what">Restaurant</span> &nbsp;<span class="why">880.41</span></div>
+</div>
+
+</div>
+
+<div>
+
+<div class="nl-type">The plan</div>
+
+<div class="nl-recap mt-3" style="font-size: 1.05rem">
+  <div class="n">1</div>
+  <div><span class="what">Pairs</span> &nbsp;<span class="why"><code>.items()</code> turns the dictionary into (name, amount) pairs</span></div>
+
+  <div class="n">2</div>
+  <div><span class="what">Compare</span> &nbsp;<span class="why">a <code>lambda</code> picks the amount, <code>x[1]</code></span></div>
+
+  <div class="n">3</div>
+  <div><span class="what">Flip</span> &nbsp;<span class="why"><code>reverse=True</code> puts the biggest first</span></div>
+
+  <div class="n">4</div>
+  <div><span class="what">Unpack</span> &nbsp;<span class="why">one variable for the name, one for the amount</span></div>
+</div>
+
+</div>
+
+</div>
+
+<div v-click class="nl-statement mt-4">
+Sort by the amount, not by the name
+</div>
+
+<!--
+SLIDE 5 - Sorting by amount
+On screen ~45 seconds. Concept slide: show it just before you type the sorted() loop in VS Code.
+Values are the REAL output of the script - do not invent numbers here.
+Point at the pair on the left first, then walk the plan on the right top to bottom.
+"Notre dictionnaire est dans l'ordre où les catégories sont apparues. Nous, on veut la plus grosse dépense en premier."
+"`.items()` transforme le dictionnaire en paires : le nom de la catégorie, et son total."
+"Dans une paire, `x[0]` c'est le nom, `x[1]` c'est le montant."
+"Une `lambda`, c'est une mini-fonction : on lui donne une paire, elle rend le montant. C'est ça que `sorted` va comparer."
+"`reverse=True` : du plus grand au plus petit."
+"Et dans la boucle, on découpe chaque paire en deux variables : `categorie` et `montant`."
+Point at the left column: Logement comes first, at 1670.03.
+PAUSE.
+[CLICK]
+"On trie par le montant, pas par le nom. Maintenant, on l'écrit."
+-->
+
 ---
 layout: default
 ---
@@ -265,7 +345,7 @@ Everything else in Python builds on this
 </div>
 
 <!--
-SLIDE 5 - Recap
+SLIDE 6 - Recap
 On screen ~45 seconds. Appears at 15:35.
 One line revealed per concept as you name it.
 This is the most screenshot-able moment in the video.
@@ -291,7 +371,7 @@ The full code is in the description
 </div>
 
 <!--
-SLIDE 6 - Closing card
+SLIDE 7 - Closing card
 On screen ~12 seconds. Appears at ~17:30.
 Say the next video's topic out loud while this is up - the line on screen
 is the reminder, your voice is the reason they come back.

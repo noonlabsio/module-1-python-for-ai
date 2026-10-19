@@ -21,3 +21,5 @@ print(f"total depense: {total_depense:.2f} €")
 print("total depense par categorie")
 for categorie, montant in sorted(total_par_categie.items(), key=lambda x: x[1], reverse=True):
     print(f"{categorie}:  {montant:.2f}")
+
+print("="*40)

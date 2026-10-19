@@ -18,3 +18,19 @@ CLAUDE.local.md
 .idea/
 *.swp
 .DS_Store
+
+# Logs / background runs
+*.log
+nohup.out
+
+# Slidev exports
+exports/
+*.pdf
+*.pptx
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Env / secrets
+.env
+.env.*
