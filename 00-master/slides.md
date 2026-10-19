@@ -4,7 +4,7 @@ title: Python for Modern AI — Module I
 info: NoonLabs - Module I, compilation
 transition: fade
 mdc: true
-src: ../01_env_setup/slides.md#1-10
+src: ../01_env_setup/slides.md#1-20
 ---
 
 ---
