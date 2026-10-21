@@ -225,8 +225,7 @@ except ValueError:
 <div class="nl-type mt-2"><NlIcon name="split" /> Several, one clause</div>
 
 ```python
-except (ValueError, TypeError):
-    ...
+except (ValueError, TypeError): ...
 ```
 
 <div class="nl-type mt-2"><NlIcon name="arrow" /> Different handling each</div>
@@ -308,13 +307,13 @@ except ValueError as e:
     log.warning("bad json: %s", e)
 ```
 
-<div class="nl-type mt-2"><NlIcon name="prompt" /> What it carries</div>
+<div class="nl-type mt-2"><NlIcon name="prompt" /> What it carries, inside the handler</div>
 
 ```python
-e.args          # the arguments
-str(e)          # the message
-type(e).__name__
-e.__traceback__
+except ValueError as e:
+    e.args            # the arguments
+    str(e)            # the message
+    e.__traceback__   # where it happened
 ```
 
 </div>
@@ -358,6 +357,9 @@ arguments, une trace, et souvent des attributs spécifiques."
 Show it live: catch a FileNotFoundError and print e.filename and e.errno.
 
 "Regardez : il sait QUEL fichier. Vous n'avez pas besoin de le deviner."
+
+Say where e lives: tout ça se lit DANS le bloc except. À la sortie du bloc,
+Python supprime e - le lire après donne une NameError.
 
 Then the message discipline, which is a production habit:
 "« Une erreur est survenue » ne sert à personne. Mettez la valeur fautive
@@ -465,9 +467,9 @@ with open(path) as f:
 
 <div class="nl-type"><NlIcon name="layers" /> <code>finally</code> always wins</div>
 
-A `return` — or a `break`, or a second `raise` — inside `finally` replaces
-whatever was happening. The original exception is discarded silently, with no
-trace of it anywhere.
+A `return` or a `break` inside `finally` discards the exception silently. A
+`raise` there replaces it: the original survives only as context, under
+"During handling of the above exception".
 
 <div style="font-size: 1.05rem">
 
@@ -487,7 +489,7 @@ releasing has a context manager, use that instead: chapter six's `with` is a
 </div>
 
 <div class="nl-statement mt-3">
-Nothing escapes <code>finally</code> — including the exception you wanted to see
+A <code>return</code> in <code>finally</code> erases the exception you wanted to see
 </div>
 
 <div class="nl-live"><span><span class="nl-logo nl-logo--vscode" /> Live in VS Code</span></div>
@@ -508,6 +510,10 @@ PAUSE. Let that sit.
 Then the rule, which is short enough to remember:
 "Le finally sert à LIBÉRER, jamais à DÉCIDER. Fermer, déverrouiller,
 annuler, supprimer le fichier temporaire. Pas return, pas raise."
+
+Be precise about raise: un raise dans le finally ne fait pas disparaître
+l'original - Python le garde en contexte, « During handling ». Mais il le
+cache derrière une autre erreur. Seuls return et break l'effacent vraiment.
 
 Then the chapter-six callback: et si l'objet a un gestionnaire de contexte,
 utilisez `with`. C'est un try/finally qu'on ne peut pas rater.
@@ -651,7 +657,7 @@ the default, not the favour.
 </div>
 
 <div class="nl-statement mt-3">
-<code>raise</code> alone keeps the whole traceback — <code>raise e</code> would truncate it
+<code>raise</code> re-raises as is — <code>raise e</code> adds its own line
 </div>
 
 <div class="nl-live"><span><span class="nl-logo nl-logo--vscode" /> Live in VS Code</span></div>
@@ -674,8 +680,9 @@ PAUSE.
 
 Then the one that saves debugging time:
 "Et `raise` tout seul, sans rien après, relève la même exception avec sa
-trace complète. Si vous écrivez `raise e`, vous repartez de cette ligne-ci et
-vous perdez le chemin."
+trace complète. Si vous écrivez `raise e`, la trace garde le chemin, mais
+ajoute une ligne de plus : celle du raise. Ça brouille la lecture pour
+rien."
 
 Close the loop with slide three: on a appris à lire une trace au début du
 chapitre. Voilà comment on en écrit une qui se lit.
@@ -1249,7 +1256,7 @@ for attempt in range(1, 4):
 ```
 
 <div class="nl-type mt-2 nl-type--plain">
-1s, 2s, 4s — then give up and let the caller decide.
+Three attempts: wait 2s, then 4s, then give up and let the caller decide.
 </div>
 
 </div>
@@ -1296,6 +1303,10 @@ PAUSE.
 
 "Réessayer un bug, ce n'est pas de la robustesse. C'est de la dissimulation
 avec une boucle autour."
+
+Read the loop precisely: trois tentatives, c'est un essai plus deux
+nouvelles tentatives. On attend deux secondes, puis quatre, et à la troisième
+erreur on relève l'exception.
 
 The three requirements are worth naming as a checklist: une limite, une
 attente croissante, et un raise à la fin. Sans le raise final, votre

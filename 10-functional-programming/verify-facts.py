@@ -119,6 +119,18 @@ check(5, "a frozen dataclass refuses assignment",
 shallow = ([1],)
 shallow[0].append(2)
 check(5, "immutability is shallow: the list inside still changes", shallow, ([1, 2],))
+check(5, "... and a tuple holding a list cannot be hashed", raises(lambda: hash(shallow)), "TypeError: unhashable type: 'list'")
+
+
+@dataclass(frozen=True)
+class Holder:
+    items: list
+
+
+_h = Holder([1])
+_h.items.append(2)
+check(5, "a frozen dataclass holding a list still changes, and is unhashable",
+      (_h.items, raises(lambda: hash(_h))), ([1, 2], "TypeError: unhashable type: 'list'"))
 
 
 # ── slide 6 · map & filter ────────────────────────────────────────────────

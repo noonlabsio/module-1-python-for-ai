@@ -254,14 +254,14 @@ not support item assignment
 <div class="nl-recap mt-2">
   <div class="n">tuple</div><div><span class="why">an immutable list</span></div>
   <div class="n">frozenset</div><div><span class="why">an immutable set, hashable</span></div>
-  <div class="n">frozen dataclass</div><div><span class="why">an immutable record — chapter 08</span></div>
+  <div class="n">frozen dataclass</div><div><span class="why">no field reassignment — chapter 08</span></div>
   <div class="n">MappingProxyType</div><div><span class="why">a read-only view of a dict</span></div>
 </div>
 
 <div class="mt-3" style="font-size: 1.05rem">
 
-A function that receives immutable data cannot change it, so it cannot
-surprise its caller.
+Immutability is shallow: a tuple or a frozen dataclass holding a list can still
+change, and can no longer be hashed.
 
 </div>
 

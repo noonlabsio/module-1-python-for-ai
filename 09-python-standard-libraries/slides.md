@@ -530,7 +530,7 @@ layout: default
 class: nl-deck
 ---
 
-# `decimal`: Money Without Rounding Errors
+# `decimal`: Exact Decimals, Explicit Rounding
 
 <div class="nl-cols mt-4">
 

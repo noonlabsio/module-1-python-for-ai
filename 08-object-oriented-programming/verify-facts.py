@@ -366,6 +366,15 @@ class Ranked:
     rank: int
 
 
+@dataclass(frozen=True)
+class FrozenList:
+    items: list
+
+
+_fl = FrozenList([1])
+_fl.items.append(2)
+check(21, "frozen stops reassignment, not mutation", _fl.items, [1, 2])
+check(21, "a list field makes hash() fail", raises(lambda: hash(_fl)), "TypeError: unhashable type: 'list'")
 check(21, "order=True sorts", [r.rank for r in sorted([Ranked(3), Ranked(1)])], [1, 3])
 
 
@@ -414,6 +423,23 @@ def beta():
 
 check(22, "without wraps, name is lost", (alpha.__name__, alpha.__doc__), ("wrapper", None))
 check(22, "with wraps, name survives", (beta.__name__, beta.__doc__), ("beta", "doc beta"))
+check(22, "wraps sets __wrapped__", beta.__wrapped__.__name__, "beta")
+
+
+@wrapped
+def _boom():
+    raise ValueError("x")
+
+
+def _frames(fn):
+    import traceback
+    try:
+        fn()
+    except ValueError as e:
+        return [f.name for f in traceback.extract_tb(e.__traceback__)][1:]
+
+
+check(22, "with wraps, the traceback still shows a wrapper frame", _frames(_boom), ["wrapper", "_boom"])
 
 
 # ── slide 23 · the three closing error messages ───────────────────────────

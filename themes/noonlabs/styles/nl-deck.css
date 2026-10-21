@@ -34,14 +34,16 @@
 .nl-deck p  { margin: 0.35em 0; }
 
 .nl-deck ul { margin: 0.3em 0; padding-left: 0; list-style: none; }
-.nl-deck li { margin: 0.28em 0; display: flex; align-items: baseline; gap: 0.55rem; }
-/* the bullet is a bronze chevron, not a disc: it echoes the >>> prompt */
+.nl-deck li { margin: 0.28em 0; position: relative; padding-left: 1.15em; }
+/* the bullet is a bronze chevron, not a disc: it echoes the >>> prompt.
+   Positioned, not a flex item: as a flex row, every <code> or <strong>
+   inside the item became its own column, with gaps around it. */
 .nl-deck li::before {
   content: "\203A";
+  position: absolute;
+  left: 0;
   color: var(--accent);
   font-family: var(--nl-mono);
-  flex: none;
-  line-height: 1;
 }
 
 .nl-deck .slidev-code,

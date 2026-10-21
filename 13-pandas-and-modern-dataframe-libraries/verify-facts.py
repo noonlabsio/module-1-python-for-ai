@@ -132,6 +132,12 @@ check(7, "the warning says it never works",
       any("chained assignment never works" in " ".join(str(w.message).split()) for w in caught), True)
 d.loc[0, "montant"] = 0
 check(7, "one .loc assignment works", d.loc[0, "montant"], 0.0)
+d2 = df.copy()
+d2["montant"] = 1.0
+check(7, "assigning a whole column on the DataFrame reaches it", float(d2["montant"].sum()), 247.0)
+d2.iloc[0, 2] = 5.0
+d2.at[1, "montant"] = 6.0
+check(7, "iloc and at assignments reach it too", (d2.loc[0, "montant"], d2.loc[1, "montant"]), (5.0, 6.0))
 sel = df[df["montant"] > 100]
 sel["montant"] = 0
 check(7, "Copy-on-Write: changing a selection leaves the original", df["montant"].max(), 1250.0)
@@ -266,6 +272,8 @@ check(16, "a DatetimeIndex", isinstance(ts.index, pd.DatetimeIndex), True)
 check(16, "resample('ME').sum(): 5308.39", round(ts.resample("ME").sum().iloc[0], 2), 5308.39)
 w = ts.resample("W").sum()
 check(16, "weekly totals start 1741.86, 825.12", [round(x, 2) for x in w.iloc[:2]], [1741.86, 825.12])
+check(16, "the rent falls on January 3, inside the first week",
+      (str(ts.idxmax().date()), ts.max(), ts.idxmax() <= w.index[0]), ("2026-01-03", 1250.0, True))
 pc = w.pct_change().round(3).iloc[:2].tolist()
 check(16, "pct_change: nan, -0.526", (bool(np.isnan(pc[0])), pc[1]), (True, -0.526))
 check(16, "shift(1) moves one period", round(w.shift(1).iloc[1], 2), 1741.86)

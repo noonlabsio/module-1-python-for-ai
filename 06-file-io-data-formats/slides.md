@@ -146,8 +146,7 @@ open(p, "rb").read()    # -> bytes
 ```python
 open("clients.csv",
      encoding="utf-8").read()
-# UnicodeDecodeError: 0xe9 in
-# position 15
+# UnicodeDecodeError: byte 0xe9
 ```
 
 <div class="nl-type nl-good mt-2"><NlIcon name="check" /> Excel wrote cp1252</div>
@@ -316,7 +315,6 @@ class Timer:
     def __enter__(self):
         self.t = time.monotonic()
         return self
-
     def __exit__(self, *exc):
         print(time.monotonic() - self.t)
 ```
@@ -556,12 +554,13 @@ class: nl-deck
 
 ```python
 import csv
+opts = dict(newline="", encoding="utf-8")
 
-with open(p, newline="",
-          encoding="utf-8") as f:
+with open(p, **opts) as f:      # by position
     for row in csv.reader(f):
         print(row[0])
 
+with open(p, **opts) as f:      # by name
     for row in csv.DictReader(f):
         print(row["montant"])
 ```
@@ -617,6 +616,11 @@ texte n'a pas de type."
 
 Let that sit.
 
+Point at the two with blocks: deux alternatives complètes, chacune rouvre le
+fichier. Un lecteur consomme le fichier, comme l'itérateur du chapitre trois :
+un second for dans le même with ne lirait plus rien. Et opts, avec les deux
+étoiles, c'est le **kwargs du chapitre quatre.
+
 Then the two practical points. newline="" with its reason - le module csv gère
 lui-même les fins de ligne, et sans ça vous aurez des lignes vides sous
 Windows. And the French Excel delimiter, which will affect half the audience:
@@ -634,19 +638,21 @@ class: nl-deck
 
 <div>
 
-<div class="nl-type"><NlIcon name="arrow" /> Rows, or dictionaries</div>
+<div class="nl-type"><NlIcon name="arrow" /> Rows, or dictionaries: one file each</div>
 
 ```python
-with open(p, "w", newline="",
-          encoding="utf-8") as f:
+opts = dict(newline="", encoding="utf-8")
+cols = ["nom", "montant"]
+
+with open("a.csv", "w", **opts) as f:
     w = csv.writer(f)
-    w.writerow(["nom", "montant"])
+    w.writerow(cols)
     w.writerows(rows)
 
-    d = csv.DictWriter(f,
-        fieldnames=["nom", "montant"])
+with open("b.csv", "w", **opts) as f:
+    d = csv.DictWriter(f, fieldnames=cols)
     d.writeheader()
-    d.writerow({"nom": "Alice"})
+    d.writerows(dicts)
 ```
 
 </div>
@@ -687,6 +693,9 @@ avant que ce soit en production."
 PAUSE.
 
 Then csv.writer doing it properly - guillemets automatiques.
+
+Two files on purpose: un seul en-tête par fichier. Les deux writers dans le
+même fichier écriraient deux lignes d'en-tête.
 
 DictWriter gets thirty seconds: quand les colonnes doivent être dans un ordre
 précis, ou quand vos données sont déjà des dictionnaires - ce qui arrive dès

@@ -18,3 +18,27 @@ CLAUDE.local.md
 .idea/
 *.swp
 .DS_Store
+
+# Logs / background runs
+*.log
+nohup.out
+
+# Slidev exports
+exports/
+*.pdf
+*.pptx
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Archives (any depth)
+archieves/
+archives/
+
+# Env / secrets
+.env
+.env.*
+
+# Chapter 01 working files
+01_env_setup/backup*/
+01_env_setup/verify-facts.py
